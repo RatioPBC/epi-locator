@@ -1,0 +1,35 @@
+<div data-role="refine-results" id="refine-results">
+  <h5>Refine results</h5>
+  <%= f = form_for @changeset, "#", id: "refine-search-results-form", phx_change: "change", phx_submit: "refine", phx_target: @myself%>
+    <div class="refine-field">
+        <%= label f, :first_name, "First name" %>
+        <%= text_input f, :first_name, id: "first-name" %>
+    </div>
+    <div class="refine-field">
+        <%= label f, :last_name, "Last name" %>
+        <%= text_input f, :last_name, id: "last-name", disabled: true %>
+    </div>
+    <div class="refine-field" data-role="dob">
+        <label>Date of Birth</label>
+        <%= select f, :dob_month, months(), id: "month"%>
+        <%= select f, :dob_day, days(), id: "day"%>
+        <%= select f, :dob_year, years(), id: "year"%>
+    </div>
+    <div class="refine-field">
+        <%= label f, :city, "City" %>
+        <%= text_input f, :city, id: "city" %>
+    </div>
+    <div class="refine-field">
+        <%= label f, :state, "State" %>
+        <%= select f, :state, states(), id: "state"%>
+    </div>
+    <div class="refine-field">
+        <%= label f, :phone, "Phone" %>
+        <%= text_input f, :phone, id: "phone" %>
+    </div>
+    <div class="refine-controls">
+        <%= content_tag(:button, "Refine", type: "submit") %>
+        <%= content_tag(:button, "reset", type: "button", id: "reset-form", phx_click: "reset", phx_target: @myself) %>
+    </div>
+  </form>
+</div>

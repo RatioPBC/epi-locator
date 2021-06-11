@@ -1,0 +1,9 @@
+<h5><%= number_of_search_results(@all_search_results) %> </h5>
+
+<%= render("_person_search_results.html", person_search_results: @visible_search_results) %>
+
+<%= if @show_all_results_button do %>
+  <div class="show-all-results-container">
+    <button class="show-all-results" phx-click="show-all-results"><%= "Show #{@hidden_result_count} more result(s)"%></button>
+  </div>
+<% end %>

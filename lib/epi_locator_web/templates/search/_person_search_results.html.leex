@@ -1,0 +1,39 @@
+<ul class="search-results">
+  <%= for person_result <- @person_search_results do %>
+    <li class="search-result">
+      <div class="search-result-component-header">
+        <h3 class="full-name"><%= full_name(person_result) %></h3>
+        <span>Date of birth: <%= person_result.dob %></span>
+      </div>
+
+      <ul class="phone-numbers">
+        <%= for phone <- person_result.phone_numbers |> Enum.reject(& !&1.phone) do %>
+          <li class="search-result-component">
+            <div class="source">
+              <span class="heading">Source:</span>
+              <span><%= Enum.join(phone.source, ", ") %></span>
+            </div>
+
+            <div class="phone-and-button">
+              <span class="phone-number"><%= phone.phone %></span>
+              <button id="person-result-<%= person_result.id %>phone-<%= phone.id %>" class="button-small copy-button" phx-hook="CopyButton" data-copydata="<%= raw_phone_number(phone.phone) %>" >Copy</button>
+            </div>
+          </li>
+        <% end %>
+
+        <li class="search-result-component">
+          <div class="last-confirmed">
+            <span class="heading">Last confirmed: </span>
+            <span><%= person_result.reported_date %></span>
+          </div>
+
+          <div class="address">
+            <span class="address-line"><%= person_result.address %></span>
+            <button id="person-result-<%= person_result.id %>-address-<%= person_result.address_hash %>" class="button-small copy-button" phx-hook="CopyButton" data-copydata="<%= person_result.address %>">Copy</button>
+          </div>
+        </li>
+      </ul>
+    </li>
+
+  <% end %>
+</ul>

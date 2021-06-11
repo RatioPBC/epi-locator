@@ -1,0 +1,104 @@
+<div>page refresh nonce because :shrug: - <%= @nonce %></div>
+<a class="epi-locator" href="/verify?case-id=<%= @case_id %>&user-id=<%= @user_id %>&domain=<%= @domain %>&path=search">Jane Sample-document</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/sha512.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.42/polyfill.min.js"></script>
+<script>
+  class CommcareSignature {
+    constructor(key, secret) {
+      this.key = key
+      this.hashedSecret = this.hash(secret).toString()
+    }
+
+      randomString(nBytes) {
+          return CryptoJS.lib.WordArray.random(nBytes).toString();
+      };
+
+      digest(key, nonce, timestamp) {
+          return CryptoJS.SHA512([key, nonce, timestamp].join(""));
+      };
+
+      encode64(message) {
+          return CryptoJS.enc.Base64.stringify(message);
+      };
+
+      hash(message) {
+          return CryptoJS.SHA512(message);
+      };
+
+      hmac(message, secret) {
+          return CryptoJS.HmacSHA512(message, secret);
+      };
+      clickHandler() {
+        var self = this
+        return function(event) {
+          event.preventDefault()
+          var anchor = event.target
+
+          var url = new URL(anchor.href);
+
+          var path = url.pathname;
+          url.searchParams.sort();
+
+          var variables = url.searchParams.toString();
+
+          var hashedBody = self.encode64(self.hash(variables));
+
+          var dest = url.origin + url.pathname;
+
+          var nonce = self.randomString(16);
+          var timestamp = Date.now();
+
+          var keyDigest = self.digest(self.key, nonce, timestamp);
+
+          var message = [path, variables, keyDigest, hashedBody].join("");
+          var signature = self.hmac(message, self.hashedSecret);
+          var encodedSignature = self.encode64(signature);
+
+          var args = {
+              'nonce': nonce,
+              'timestamp': timestamp,
+              'variables': variables,
+              'signature': encodedSignature};
+
+          self.postForm(args, dest);
+        }
+      }
+
+      postForm(data, dest) {
+          var form = document.createElement("form");
+
+          form.method = "POST";
+          form.action = dest;
+          form.target = "_blank";
+
+          for (var key in data) {
+              var element = document.createElement("input");
+              element.name = key;
+              element.value = data[key];
+
+              form.appendChild(element);
+          }
+
+          document.body.appendChild(form);
+
+          form.submit();
+
+          document.body.removeChild(form);
+      };
+  };
+
+  (function() {
+    var key = "<%= commcare_signature_key() %>";
+    var secret = "<%= commcare_signature_secret() %>";
+    var links = document.getElementsByClassName("epi-locator");
+    var cs = new CommcareSignature(key, secret)
+
+      Array.prototype.forEach.call(links, function(link) {
+      link.addEventListener("click", cs.clickHandler())
+    })
+  })()
+</script>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<phs:PhoneSearchRequest xmlns:phs="http://clear.thomsonreuters.com/api/search/2.0">
+  <PermissiblePurpose>
+    <GLB>L</GLB>
+    <DPPA>1</DPPA>
+    <VOTER>5</VOTER>
+  </PermissiblePurpose>
+  <Reference>S2S Phone Search</Reference>
+  <Criteria>
+    <ph1:PhoneCriteria xmlns:ph1="com/thomsonreuters/schemas/search">
+      <BusinessName></BusinessName>
+      <PersonName>
+        <LastName>Sample-Document</LastName>
+        <FirstName>Eric</FirstName>
+      </PersonName>
+      <Address>
+        <Street>4010 Cinnabar Drive</Street>
+        <City>Eagan</City>
+        <State>MN</State>
+        <ZipCode></ZipCode>
+        <Province></Province>
+        <Country></Country>
+      </Address>
+      <PhoneNumber>612-555-8910</PhoneNumber>
+    </ph1:PhoneCriteria>
+  </Criteria>
+  <Datasources>
+    <PublicRecordPhones>true</PublicRecordPhones>
+    <ReversePhoneLookup>true</ReversePhoneLookup>
+  </Datasources>
+  <PhonesDatasets>
+    <BusinessPhones>false</BusinessPhones>
+    <CanadianBusinessPhones>false</CanadianBusinessPhones>
+    <CanadianPhones>false</CanadianPhones>
+    <Experian>false</Experian>
+    <DunBradstreet>false</DunBradstreet>
+    <HouseholdListings>false</HouseholdListings>
+    <PhoneRecords>false</PhoneRecords>
+    <TransUnion>false</TransUnion>
+    <UtilityListing>false</UtilityListing>
+    <Worldbase>false</Worldbase>
+    <MotorVehicleServiceAndWarrantyRecords>false</MotorVehicleServiceAndWarrantyRecords>
+    <MarijuanaRelatedBusinesses>false</MarijuanaRelatedBusinesses>
+  </PhonesDatasets>
+</phs:PhoneSearchRequest>

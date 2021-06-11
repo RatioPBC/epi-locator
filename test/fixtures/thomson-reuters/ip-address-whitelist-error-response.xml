@@ -1,0 +1,7 @@
+<ns2:ErrorResponse xmlns:ns2="http://clear.thomsonreuters.com/api/core/2.0">
+  <Status>
+    <StatusCode>401</StatusCode>
+    <SubStatusCode>10003</SubStatusCode>
+    <Message>Not Authorized.</Message>
+  </Status>
+</ns2:ErrorResponse>

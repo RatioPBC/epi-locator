@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:PersonResultsPage xmlns:ns2="com/thomsonreuters/schemas/search"
+                       xmlns:ns3="http://clear.thomsonreuters.com/api/search/2.0">
+    <Status>
+        <StatusCode>200</StatusCode>
+        <SubStatusCode>200</SubStatusCode>
+    </Status>
+    <StartIndex>0</StartIndex>
+    <EndIndex>1</EndIndex>
+    <ResultGroup>
+        <GroupId>000000007379a7250173981f7cdf27d9</GroupId>
+        <RecordCount>1</RecordCount>
+        <Relevance>99</Relevance>
+        <DominantValues>
+            <ns2:PersonDominantValues>
+                <Name>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN DOE</FullName>
+                </Name>
+                <Address>
+                    <Street>123 MARKET ST FL 3</Street>
+                    <City>SAN FRANCISCO</City>
+                    <State>CA</State>
+                    <ZipCode>94103</ZipCode>
+                </Address>
+            </ns2:PersonDominantValues>
+        </DominantValues>
+        <RecordDetails>
+            <ns2:PersonResponseDetail>
+                <Name>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN DOE</FullName>
+                </Name>
+                <PersonProfile/>
+                <EmailAddress>john@example.com</EmailAddress>
+                <Employer>PIVOTAL LABS</Employer>
+                <KnownAddresses>
+                    <Address>
+                        <Street>123 MARKET ST FL 3</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94103</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <Country>USA</Country>
+                        <Latitude>37.78687</Latitude>
+                        <Longitude>-122.40446</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 123-4567</PhoneNumber>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>Work Affiliations</SourceName>
+                        <SourceDocumentGuid>I00000000828811e18b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <AdditionalPhoneNumbers>
+                    <PhoneNumber>(415) 123-4567</PhoneNumber>
+                    <SourceInfo>
+                        <SourceName>Work Affiliations</SourceName>
+                        <SourceDocumentGuid>I00000000828811e18b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                </AdditionalPhoneNumbers>
+                <Message>Please Note: Limited information is available for this individual from the Work Affiliations record.
+                </Message>
+                <PersonEntityId>P2__LTgyMDcxMzQ3ODI</PersonEntityId>
+                <AllSourceDocuments>
+                    <SourceName>Work Affiliations</SourceName>
+                    <SourceDocumentGuid>I00000000828811e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+            </ns2:PersonResponseDetail>
+        </RecordDetails>
+    </ResultGroup>
+    <ResultGroup>
+        <GroupId>000000007379a7250173981f7ce327da</GroupId>
+        <RecordCount>1</RecordCount>
+        <Relevance>97</Relevance>
+        <DominantValues>
+            <ns2:PersonDominantValues>
+                <Name>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN DOE</FullName>
+                </Name>
+                <SSN>123-45-XXXX</SSN>
+                <AgeInfo>
+                    <PersonBirthDate>05/XX/1962</PersonBirthDate>
+                    <PersonAge>58</PersonAge>
+                </AgeInfo>
+                <Address>
+                    <Street>12 ROCKAWAY AVE</Street>
+                    <City>SAN FRANCISCO</City>
+                    <State>CA</State>
+                    <ZipCode>94127</ZipCode>
+                    <ReportedDate>10/14/2018</ReportedDate>
+                </Address>
+            </ns2:PersonDominantValues>
+        </DominantValues>
+        <RecordDetails>
+            <ns2:PersonResponseDetail>
+                <Name>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN DOE</FullName>
+                </Name>
+                <SSN>123-45-XXXX</SSN>
+                <PersonProfile>
+                    <PersonBirthDate>05/XX/1962</PersonBirthDate>
+                    <PersonBirthDate>05/1962</PersonBirthDate>
+                </PersonProfile>
+                <AKANames>
+                    <FirstName>JOHN</FirstName>
+                    <MiddleName>CHARLES</MiddleName>
+                    <LastName>DOE</LastName>
+                </AKANames>
+                <AKANames>
+                    <FirstName>JOHN</FirstName>
+                    <MiddleName>J</MiddleName>
+                    <LastName>DOE</LastName>
+                    <FullName>DOE, JOHN J</FullName>
+                </AKANames>
+                <AKANames>
+                    <FirstName>JOHN</FirstName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN DOE</FullName>
+                </AKANames>
+                <AKANames>
+                    <FirstName>JOHN</FirstName>
+                    <MiddleName>C</MiddleName>
+                    <LastName>DOE</LastName>
+                    <FullName>JOHN C DOE</FullName>
+                </AKANames>
+                <EmailAddress>RDOE@EXCITE.COM</EmailAddress>
+                <EmailAddress>john@example.com</EmailAddress>
+                <EmailAddress>jdoe@collegeclub.com</EmailAddress>
+                <EmailAddress>DOE@COLLEGECLUB.COM</EmailAddress>
+                <Employer>WWIC</Employer>
+                <KnownAddresses>
+                    <Address>
+                        <Street>12 ROCKAWAY AVE</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94127</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>10/14/2018</ReportedDate>
+                        <Latitude>37.7438</Latitude>
+                        <Longitude>-122.45874</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 987-6543</PhoneNumber>
+                        <AdditionalPhoneList>(415) 731-5432</AdditionalPhoneList>
+                        <AdditionalPhoneList>(415) 733-4233</AdditionalPhoneList>
+                        <AdditionalPhoneList>(973) 678-7123</AdditionalPhoneList>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>Phone Record</SourceName>
+                        <SourceDocumentGuid>I00000000cc3711e398db8b09b4f043e0</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Household Listing</SourceName>
+                        <SourceDocumentGuid>I000000007db011e28578f7ccc38dcbee</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000a50a11e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Email Records</SourceName>
+                        <SourceDocumentGuid>I00000000013a11e28b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Work Affiliations</SourceName>
+                        <SourceDocumentGuid>I00000000e26611e18b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>22138 HIGHWAY 1</Street>
+                        <City>JENNER</City>
+                        <State>CA</State>
+                        <ZipCode>95450</ZipCode>
+                        <County>SONOMA COUNTY</County>
+                        <ReportedDate>05/06/2017</ReportedDate>
+                        <Latitude>38.54181</Latitude>
+                        <Longitude>-123.28789</Longitude>
+                    </Address>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000c03111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>123 MARKET ST FL 3</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94103</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>05/06/2017</ReportedDate>
+                        <Latitude>37.78702</Latitude>
+                        <Longitude>-122.40427</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 123-4567</PhoneNumber>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000c03111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Work Affiliations</SourceName>
+                        <SourceDocumentGuid>I00000000946911e38578f7ccc38dcbee</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>123 BUENA VISTA AVE E</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94117</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>07/27/2016</ReportedDate>
+                        <Latitude>37.76911</Latitude>
+                        <Longitude>-122.43835</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 731-5432</PhoneNumber>
+                        <AdditionalPhoneList>(415) 987-6543</AdditionalPhoneList>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>Phone Record</SourceName>
+                        <SourceDocumentGuid>I00000000cc3811e398db8b09b4f043e0</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Household Listing</SourceName>
+                        <SourceDocumentGuid>I000000007d6e11e28578f7ccc38dcbee</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>New Movers</SourceName>
+                        <SourceDocumentGuid>I00000000ecfb11e18b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000bd4611e18b05fdf15589d8e8</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>1234 HARRISON ST</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94110</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>04/30/2011</ReportedDate>
+                        <Latitude>37.75783</Latitude>
+                        <Longitude>-122.41237</Longitude>
+                    </Address>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>1532 DOLORES ST APT D</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94110</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>07/31/2009</ReportedDate>
+                        <Latitude>37.74596</Latitude>
+                        <Longitude>-122.42463</Longitude>
+                    </Address>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>123 STONYBROOK RD</Street>
+                        <City>LOS GATOS</City>
+                        <State>CA</State>
+                        <ZipCode>95032</ZipCode>
+                        <County>SANTA CLARA COUNTY</County>
+                        <ReportedDate>01/23/2003</ReportedDate>
+                        <Latitude>37.225568</Latitude>
+                        <Longitude>-121.960222</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 731-5432</PhoneNumber>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Historic Credit Bureau</SourceName>
+                        <SourceDocumentGuid>I00000000ae2f11de9b8c850332338889</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>1800 CHURCH ST</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94131</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>01/23/2003</ReportedDate>
+                        <Latitude>37.740818</Latitude>
+                        <Longitude>-122.426726</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 731-5432</PhoneNumber>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Historic Credit Bureau</SourceName>
+                        <SourceDocumentGuid>I00000000ae2f11de9b8c850332338889</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>193 RANDALL ST</Street>
+                        <City>SAN FRANCISCO</City>
+                        <State>CA</State>
+                        <ZipCode>94131</ZipCode>
+                        <County>SAN FRANCISCO COUNTY</County>
+                        <ReportedDate>01/23/2003</ReportedDate>
+                        <Latitude>37.739683</Latitude>
+                        <Longitude>-122.427599</Longitude>
+                    </Address>
+                    <Phones>
+                        <PhoneNumber>(415) 731-5432</PhoneNumber>
+                    </Phones>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Historic Credit Bureau</SourceName>
+                        <SourceDocumentGuid>I00000000ae2f11de9b8c850332338889</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <KnownAddresses>
+                    <Address>
+                        <Street>101 HYDE PARK CT</Street>
+                        <City>CARY</City>
+                        <State>NC</State>
+                        <ZipCode>27513</ZipCode>
+                        <County>WAKE COUNTY</County>
+                        <ReportedDate>10/31/1994</ReportedDate>
+                        <Latitude>35.80585</Latitude>
+                        <Longitude>-78.77595</Longitude>
+                    </Address>
+                    <SourceInfo>
+                        <SourceName>Equifax</SourceName>
+                        <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                </KnownAddresses>
+                <AdditionalPhoneNumbers>
+                    <PhoneNumber>(415) 731-5432</PhoneNumber>
+                    <SourceInfo>
+                        <SourceName>Phone Record</SourceName>
+                        <SourceDocumentGuid>I00000000cc3811e398db8b09b4f043e0</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000a50a11e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Household Listing</SourceName>
+                        <SourceDocumentGuid>I000000007db011e28578f7ccc38dcbee</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>TransUnion</SourceName>
+                        <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                    </SourceInfo>
+                </AdditionalPhoneNumbers>
+                <AdditionalPhoneNumbers>
+                    <PhoneNumber>(415) 987-6543</PhoneNumber>
+                    <SourceInfo>
+                        <SourceName>Phone Record</SourceName>
+                        <SourceDocumentGuid>I00000000cc3711e398db8b09b4f043e0</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000bb2a11e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                    <SourceInfo>
+                        <SourceName>Utility Listing</SourceName>
+                        <SourceDocumentGuid>I00000000c03111e79bef99c0ee06c731</SourceDocumentGuid>
+                    </SourceInfo>
+                </AdditionalPhoneNumbers>
+                <PersonEntityId>P1__MTQ3NzIxNDAxNDE</PersonEntityId>
+                <AllSourceDocuments>
+                    <SourceName>Email Records</SourceName>
+                    <SourceDocumentGuid>I00000000013a11e28b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>New Movers</SourceName>
+                    <SourceDocumentGuid>I00000000ecfb11e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Work Affiliations</SourceName>
+                    <SourceDocumentGuid>I00000000e87811e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Utility Listing</SourceName>
+                    <SourceDocumentGuid>I00000000bb2a11e79bef99c0ee06c731</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Work Affiliations</SourceName>
+                    <SourceDocumentGuid>I00000000810011e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Household Listing</SourceName>
+                    <SourceDocumentGuid>I000000007db011e28578f7ccc38dcbee</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Phone Record</SourceName>
+                    <SourceDocumentGuid>I00000000cc3711e398db8b09b4f043e0</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Utility Listing</SourceName>
+                    <SourceDocumentGuid>I00000000bd4611e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>TransUnion</SourceName>
+                    <SourceDocumentGuid>IAAA33DE0E08111D581540E00E20D7175</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Phone Record</SourceName>
+                    <SourceDocumentGuid>I00000000cc3811e398db8b09b4f043e0</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Work Affiliations</SourceName>
+                    <SourceDocumentGuid>I00000000e26611e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Equifax</SourceName>
+                    <SourceDocumentGuid>I000000009fd111e79bef99c0ee06c731</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Email Records</SourceName>
+                    <SourceDocumentGuid>I00000000010111e28b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Utility Listing</SourceName>
+                    <SourceDocumentGuid>I00000000a50a11e79bef99c0ee06c731</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Work Affiliations</SourceName>
+                    <SourceDocumentGuid>I00000000946911e38578f7ccc38dcbee</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Historic Credit Bureau</SourceName>
+                    <SourceDocumentGuid>I00000000ae2f11de9b8c850332338889</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Criminal &amp; Court</SourceName>
+                    <SourceDocumentGuid>I00000000806611e18b05fdf15589d8e8</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Household Listing</SourceName>
+                    <SourceDocumentGuid>I000000007d6e11e28578f7ccc38dcbee</SourceDocumentGuid>
+                </AllSourceDocuments>
+                <AllSourceDocuments>
+                    <SourceName>Utility Listing</SourceName>
+                    <SourceDocumentGuid>I00000000c03111e79bef99c0ee06c731</SourceDocumentGuid>
+                </AllSourceDocuments>
+            </ns2:PersonResponseDetail>
+        </RecordDetails>
+    </ResultGroup>
+</ns3:PersonResultsPage>

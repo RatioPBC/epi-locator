@@ -1,0 +1,31 @@
+<button phx-click="clear-form" id="clear-form" style="font-size: 0.7rem; font-weight: normal; padding: 0.4rem; line-height: 1.4rem; height: inherit; ">Clear Form</button>
+
+<form phx-submit="search">
+  <div class="search-type">
+    <span>
+      Search type:
+    </span>
+
+    <input type="radio" id="person-search" name="search-type" value="person" <%= person_search_radio_button_checked(@search_type) %> >
+    <label for="person-search">Person</label><br>
+    <input type="radio" id="phone-search" name="search-type" value="phone" <%= phone_search_radio_button_checked(@search_type) %> >
+    <label for="phone-search">Phone</label><br>
+  </div>
+
+  <div style="display: flex; justify-content: space-between;">
+    <input type="text" name="first-name" id="first-name" autocomplete="off" value="<%= @first_name %>" placeholder="First Name" style="width: 49%;" />
+    <input type="text" name="last-name"  id="last-name"  autocomplete="off" value="<%= @last_name %>"  placeholder="Last Name"  style="width: 49%;" />
+  </div>
+  <input type="text" name="street" id="street" autocomplete="off" value="<%= @street %>" placeholder="Street" />
+  <div style="display: flex; justify-content: space-between;">
+    <input type="text" name="city"   id="city"   autocomplete="off" value="<%= @city %>" placeholder="City" style="width: 45rem;" />
+    <select name="state" id="state" autocomplete="off" placeholder="State"><%= options_for_select(state_options(), @state) %></select>
+    <input type="text" name="zip-code"   id="zip-code"   autocomplete="off" value="<%= @zip_code %>"   placeholder="Zip Code" style="width: 15rem;" />
+  </div>
+  <div>
+    <input type="text" name="phone" id="phone" autocomplete="off" value="<%= @phone %>" placeholder="Phone" style="width: 20rem; margin-right: 1rem;" />
+    <input type="text" name="dob"   id="dob"   autocomplete="off" value="<%= @dob %>" placeholder="Date of Birth (e.g., 12/31/1987)"  style="width: 22rem" />
+  </div>
+
+  <button type="submit" id="submit" phx-disable-with="Searching...">Search</button>
+</form>

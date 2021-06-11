@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:PhoneResults xmlns:ns2="http://clear.thomsonreuters.com/api/search/2.0">
+    <Status>
+        <StatusCode>200</StatusCode>
+        <SubStatusCode>200</SubStatusCode>
+    </Status>
+    <GroupCount>0</GroupCount>
+</ns2:PhoneResults>

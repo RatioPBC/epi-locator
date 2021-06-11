@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ps:PersonSearchRequest xmlns:p1="com/thomsonreuters/schemas/search" xmlns:ps="http://clear.thomsonreuters.com/api/search/2.0">
+  <PermissiblePurpose>
+    <GLB>L</GLB>
+    <DPPA>1</DPPA>
+    <VOTER>5</VOTER>
+  </PermissiblePurpose>
+  <Reference>Credential Validation</Reference>
+  <Criteria>
+    <p1:PersonCriteria>
+      <NameInfo>
+        <AdvancedNameSearch />
+        <LastName>SAMPLE-DOCUMENT</LastName>
+        <FirstName>JANE</FirstName>
+      </NameInfo>
+      <AddressInfo />
+      <AgeInfo />
+    </p1:PersonCriteria>
+  </Criteria>
+  <Datasources>
+    <PublicRecordPeople>true</PublicRecordPeople>
+    <NPIRecord>false</NPIRecord>
+    <WorldCheckRiskIntelligence>false</WorldCheckRiskIntelligence>
+  </Datasources>
+</ps:PersonSearchRequest>

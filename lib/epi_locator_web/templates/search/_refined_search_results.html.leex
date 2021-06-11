@@ -1,0 +1,3 @@
+<h5 data-role="refined-results-count">Showing <%= @refined_search_results |> length() %> refined results of <%= @all_search_results |> length() %></h5>
+
+<%= render("_person_search_results.html", person_search_results: @refined_search_results) %>

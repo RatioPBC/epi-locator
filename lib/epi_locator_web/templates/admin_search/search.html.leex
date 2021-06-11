@@ -1,0 +1,24 @@
+<h1>Thomson Reuters Search</h1>
+
+<%= render "_search_form.html", assigns %>
+
+<%= if @search? == :in_progress do %>
+  <%= render EpiLocatorWeb.SearchView, "_search_in_progress.html" %>
+
+<% else %>
+  <%= if @visible_search_results do %>
+    <%= if @search_type == "phone" do %>
+      <%= render "_phone_search_results.html", visible_search_results: @visible_search_results %>
+
+    <% else %>
+      <%= render EpiLocatorWeb.SearchView, "_unrefined_search_results.html", visible_search_results: @visible_search_results, all_search_results: @visible_search_results, show_all_results_button: false, hidden_result_count: 0 %>
+    <% end %>
+
+  <% else %>
+    <%= if @search? == :completed do %>
+      <%= render EpiLocatorWeb.SearchView, "_no_unrefined_results.html" %>
+    <% end %>
+
+  <% end %>
+<% end %>
+

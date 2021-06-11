@@ -1,0 +1,17 @@
+<ol>
+  <%= for date <- months_since_launch() do %>
+    <% year = Timex.format!(date, "{YYYY}") %>
+    <% month = Timex.format!(date, "{0M}") %>
+    <li>
+      <span><%= Timex.format!(date, "{0M}/{YY}") %></span>
+      <%= " " %>
+      <%= link "⤵️ tr queries (raw)", to: Routes.metrics_path(@conn, :all, year, month), class: "button" %>
+      <%= " " %>
+      <%= link "⤵️ tr queries (summarized)", to: Routes.metrics_path(@conn, :summaries, year, month), class: "button" %>
+      <%= " " %>
+      <%= link "⤵️ refinements (raw)", to: Routes.metrics_path(@conn, :refinement_all, year, month), class: "button" %>
+      <%= " " %>
+      <%= link "⤵️ refinements (summarized)", to: Routes.metrics_path(@conn, :refinement_summaries, year, month), class: "button" %>
+    </li>
+  <% end %>
+</ol>

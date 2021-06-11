@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ps:PersonSearchRequest xmlns:ps="http://clear.thomsonreuters.com/api/search/2.0">
+    <PermissiblePurpose>
+        <GLB>L</GLB>
+        <DPPA>1</DPPA>
+        <VOTER>5</VOTER>
+    </PermissiblePurpose>
+    <Reference>S2S Person Search</Reference>
+    <Criteria>
+        <p1:PersonCriteria xmlns:p1="com/thomsonreuters/schemas/search">
+            <NameInfo>
+                <AdvancedNameSearch>
+                    <LastSecondaryNameSoundSimilarOption>false</LastSecondaryNameSoundSimilarOption>
+                    <SecondaryLastNameOption>OR</SecondaryLastNameOption>
+                    <FirstNameBeginsWithOption>false</FirstNameBeginsWithOption>
+                    <FirstNameSoundSimilarOption>false</FirstNameSoundSimilarOption>
+                    <FirstNameExactMatchOption>false</FirstNameExactMatchOption>
+                </AdvancedNameSearch>
+                <LastName><%= @last_name %></LastName>
+                <FirstName><%= @first_name %></FirstName>
+                <MiddleInitial></MiddleInitial>
+            </NameInfo>
+            <AddressInfo>
+                <StreetNamesSoundSimilarOption>false</StreetNamesSoundSimilarOption>
+                <Street><%= @street %></Street>
+                <City><%= @city %></City>
+                <State><%= @state %></State>
+                <County></County>
+                <ZipCode><%= @zip_code %></ZipCode>
+                <Province></Province>
+                <Country></Country>
+            </AddressInfo>
+            <AgeInfo>
+                <PersonBirthDate><%= @dob %></PersonBirthDate>
+                <PersonAgeTo></PersonAgeTo>
+                <PersonAgeFrom></PersonAgeFrom>
+            </AgeInfo>
+        </p1:PersonCriteria>
+    </Criteria>
+    <Datasources>
+        <PublicRecordPeople>true</PublicRecordPeople>
+        <NPIRecord>true</NPIRecord>
+        <WorldCheckRiskIntelligence>true</WorldCheckRiskIntelligence>
+    </Datasources>
+</ps:PersonSearchRequest>

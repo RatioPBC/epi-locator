@@ -1,0 +1,13 @@
+Mox.defmock(EpiLocator.HTTPoisonMock, for: HTTPoison.Base)
+Mox.defmock(EpiLocator.SignatureMock, for: EpiLocator.Signature)
+Mox.defmock(EpiLocator.SystemMock, for: EpiLocator.System.Behaviour)
+Mox.defmock(EpiLocator.TimeMock, for: EpiLocator.Time.Behaviour)
+Mox.defmock(LookupApiBehaviourMock, for: EpiLocator.LookupApiBehaviour)
+Mox.defmock(MetricsAPIBehaviourMock, for: EpiLocator.Monitoring.MetricsAPIBehaviour)
+Mox.defmock(PatientCaseProviderMock, for: CommcareAPI.PatientCaseProvider)
+Mox.defmock(TRClientBehaviourMock, for: EpiLocator.TRClientBehaviour)
+
+ExUnit.start()
+Ecto.Adapters.SQL.Sandbox.mode(EpiLocator.Repo, :manual)
+{:ok, _} = Application.ensure_all_started(:wallaby)
+Application.put_env(:wallaby, :base_url, EpiLocatorWeb.Endpoint.url())
