@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns3:PersonResultsPage xmlns:ns2="com/thomsonreuters/schemas/search"
-                       xmlns:ns3="http://clear.thomsonreuters.com/api/search/2.0">
+<ns4:PersonResultsPage xmlns:ns2="com/thomsonreuters/schemas/common-data" xmlns:ns3="com/thomsonreuters/schemas/search" xmlns:ns4="http://clear.thomsonreuters.com/api/search/2.0">
     <Status>
         <StatusCode>200</StatusCode>
         <SubStatusCode>200</SubStatusCode>
@@ -12,7 +11,7 @@
         <RecordCount>1</RecordCount>
         <Relevance>99</Relevance>
         <DominantValues>
-            <ns2:PersonDominantValues>
+            <ns3:PersonDominantValues>
                 <Name>
                     <FirstName>JOHN</FirstName>
                     <LastName>DOE</LastName>
@@ -24,10 +23,10 @@
                     <State>CA</State>
                     <ZipCode>94103</ZipCode>
                 </Address>
-            </ns2:PersonDominantValues>
+            </ns3:PersonDominantValues>
         </DominantValues>
         <RecordDetails>
-            <ns2:PersonResponseDetail>
+            <ns3:PersonResponseDetail>
                 <Name>
                     <FirstName>JOHN</FirstName>
                     <LastName>DOE</LastName>
@@ -69,7 +68,7 @@
                     <SourceName>Work Affiliations</SourceName>
                     <SourceDocumentGuid>I00000000828811e18b05fdf15589d8e8</SourceDocumentGuid>
                 </AllSourceDocuments>
-            </ns2:PersonResponseDetail>
+            </ns3:PersonResponseDetail>
         </RecordDetails>
     </ResultGroup>
     <ResultGroup>
@@ -77,7 +76,7 @@
         <RecordCount>1</RecordCount>
         <Relevance>97</Relevance>
         <DominantValues>
-            <ns2:PersonDominantValues>
+            <ns3:PersonDominantValues>
                 <Name>
                     <FirstName>JOHN</FirstName>
                     <LastName>DOE</LastName>
@@ -95,10 +94,10 @@
                     <ZipCode>94127</ZipCode>
                     <ReportedDate>10/14/2018</ReportedDate>
                 </Address>
-            </ns2:PersonDominantValues>
+            </ns3:PersonDominantValues>
         </DominantValues>
         <RecordDetails>
-            <ns2:PersonResponseDetail>
+            <ns3:PersonResponseDetail>
                 <Name>
                     <FirstName>JOHN</FirstName>
                     <LastName>DOE</LastName>
@@ -497,7 +496,7 @@
                     <SourceName>Utility Listing</SourceName>
                     <SourceDocumentGuid>I00000000c03111e79bef99c0ee06c731</SourceDocumentGuid>
                 </AllSourceDocuments>
-            </ns2:PersonResponseDetail>
+            </ns3:PersonResponseDetail>
         </RecordDetails>
     </ResultGroup>
-</ns3:PersonResultsPage>
+</ns4:PersonResultsPage>

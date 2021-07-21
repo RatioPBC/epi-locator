@@ -107,7 +107,7 @@ defmodule EpiLocator.TRClient do
   defp search_results(uri, key) do
     uri
     |> http_client().get(headers(), http_options())
-    |> parse_response
+    |> parse_response()
     |> case do
       {:ok, xml_map} ->
         {:ok, xml_map |> Map.get(key)}

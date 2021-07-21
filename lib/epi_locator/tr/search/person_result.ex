@@ -22,13 +22,22 @@ defmodule EpiLocator.Search.PersonResult do
     address_hash
   ]a
 
+  @namespace "com/thomsonreuters/schemas/search"
+  def namespace, do: @namespace
+  @person_dominant_values_key "{#{@namespace}}PersonDominantValues"
+  def person_dominant_values_key, do: @person_dominant_values_key
+
+  def person_dominant_values(search_result) do
+    search_result["DominantValues"][@person_dominant_values_key]
+  end
+
   def new(search_result) do
-    person_dominant_values = search_result["DominantValues"]["PersonDominantValues"]
+    person_dominant_values = search_result["DominantValues"][@person_dominant_values_key]
     address = person_dominant_values["Address"]
     name = person_dominant_values["Name"]
-    additional_phone_numbers = search_result["RecordDetails"]["PersonResponseDetail"]["AdditionalPhoneNumbers"]
+    additional_phone_numbers = search_result["RecordDetails"]["{#{@namespace}}PersonResponseDetail"]["AdditionalPhoneNumbers"]
     phone_numbers = phones(additional_phone_numbers)
-    email_addresses = search_result["RecordDetails"]["PersonResponseDetail"]["EmailAddress"] |> email_addresses()
+    email_addresses = search_result["RecordDetails"]["{#{@namespace}}PersonResponseDetail"]["EmailAddress"] |> email_addresses()
     dob = person_dominant_values["AgeInfo"]["PersonBirthDate"]
     full_address = address(address)
 

@@ -58,11 +58,7 @@ defmodule EpiLocator.Search.PersonSearchResultsTest do
     end
   end
 
-  def one_result, do: read_xml_and_turn_into_map("test/fixtures/thomson-reuters/person-search-get-response.xml")
+  def one_result, do: EpiLocator.Test.Helpers.read_tr_xml_and_turn_into_map("test/fixtures/thomson-reuters/person-search-get-response.xml")
 
-  def two_results, do: read_xml_and_turn_into_map("test/fixtures/thomson-reuters/person-search-get-response_two-results.xml")
-
-  def read_xml_and_turn_into_map(filename) do
-    filename |> File.read!() |> XmlToMap.naive_map() |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
-  end
+  def two_results, do: EpiLocator.Test.Helpers.read_tr_xml_and_turn_into_map("test/fixtures/thomson-reuters/person-search-get-response_two-results.xml")
 end

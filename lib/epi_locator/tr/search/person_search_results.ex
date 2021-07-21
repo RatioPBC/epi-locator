@@ -8,6 +8,6 @@ defmodule EpiLocator.Search.PersonSearchResults do
   def new(results) do
     result_group = results["ResultGroup"]
     search_results = if is_list(result_group), do: result_group, else: [result_group]
-    search_results |> Enum.map(&PersonResult.new(&1))
+    Enum.map(search_results, &PersonResult.new(&1))
   end
 end

@@ -3,6 +3,13 @@ defmodule EpiLocator.Search.PersonResultTest do
 
   alias EpiLocator.Search.PersonResult
 
+  test "person_dominant_values/1" do
+    key = PersonResult.person_dominant_values_key()
+    map = %{"some" => "map"}
+    search_result = %{"DominantValues" => %{key => map}}
+    assert PersonResult.person_dominant_values(search_result) == map
+  end
+
   describe "new" do
     test "creates a person result from TR search results" do
       search_result = result_with_normal_values()
@@ -114,9 +121,12 @@ defmodule EpiLocator.Search.PersonResultTest do
   end
 
   defp result_with_normal_values do
+    key = PersonResult.person_dominant_values_key()
+    ns = PersonResult.namespace()
+
     %{
       "DominantValues" => %{
-        "PersonDominantValues" => %{
+        key => %{
           "Address" => %{
             "City" => "SAN FRANCISCO",
             "State" => "CA",
@@ -138,7 +148,7 @@ defmodule EpiLocator.Search.PersonResultTest do
       "GroupId" => "000000007383fd710173989c99ec5461",
       "RecordCount" => "1",
       "RecordDetails" => %{
-        "PersonResponseDetail" => %{
+        "{#{ns}}PersonResponseDetail" => %{
           "AdditionalPhoneNumbers" => %{
             "PhoneNumber" => "(415) 123-4567",
             "SourceInfo" => %{
@@ -184,9 +194,12 @@ defmodule EpiLocator.Search.PersonResultTest do
   end
 
   defp result_with_missing_values do
+    key = PersonResult.person_dominant_values_key()
+    ns = PersonResult.namespace()
+
     %{
       "DominantValues" => %{
-        "PersonDominantValues" => %{
+        key => %{
           "Address" => %{
             "City" => %{},
             "State" => "CA",
@@ -204,7 +217,7 @@ defmodule EpiLocator.Search.PersonResultTest do
       "GroupId" => "000000007383fd710173989c99ec5461",
       "RecordCount" => "1",
       "RecordDetails" => %{
-        "PersonResponseDetail" => %{
+        "{#{ns}}PersonResponseDetail" => %{
           "AdditionalPhoneNumbers" => %{
             "PhoneNumber" => "(415) 123-4567",
             "SourceInfo" => %{
@@ -250,9 +263,12 @@ defmodule EpiLocator.Search.PersonResultTest do
   end
 
   defp result_with_multiple_phone_numbers do
+    key = PersonResult.person_dominant_values_key()
+    ns = PersonResult.namespace()
+
     %{
       "DominantValues" => %{
-        "PersonDominantValues" => %{
+        key => %{
           "Address" => %{
             "City" => "KNOXVILLE",
             "ReportedDate" => "05/15/2020",
@@ -276,7 +292,7 @@ defmodule EpiLocator.Search.PersonResultTest do
       "GroupId" => "000000007383fd710173989c99ef5463",
       "RecordCount" => "1",
       "RecordDetails" => %{
-        "PersonResponseDetail" => %{
+        "{#{ns}}PersonResponseDetail" => %{
           "AdditionalPhoneNumbers" => [
             %{
               "PhoneNumber" => "(865) 247-5998",
