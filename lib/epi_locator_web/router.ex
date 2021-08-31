@@ -77,7 +77,6 @@ defmodule EpiLocatorWeb.Router do
     pipe_through([:browser, :private_web])
 
     live_dashboard("/dashboard", metrics: EpiLocatorWeb.Telemetry)
-    live("/search", EpiLocatorWeb.AdminSearchLive, :search)
     forward("/feature-flags", FunWithFlags.UI.Router, namespace: "private/feature-flags")
   end
 

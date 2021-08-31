@@ -1,6 +1,6 @@
 defmodule EpiLocator.TRClient do
   @moduledoc """
-  Queries Thomson Reuters for people and phone numbers
+  Queries Thomson Reuters for people.
   """
 
   @behaviour EpiLocator.TRClientBehaviour
@@ -10,49 +10,12 @@ defmodule EpiLocator.TRClient do
 
   @flag_name :tr_client
   @person_search_api "api/v2/person/searchResults"
-  @phone_search_api "api/v2/phone/searchResults"
 
   defp http_client(), do: Application.get_env(:epi_locator, __MODULE__)[:http_client]
 
   def flag_name, do: @flag_name
 
   defp enabled?, do: FunWithFlags.enabled?(@flag_name)
-
-  @impl EpiLocator.TRClientBehaviour
-  def phone_search(search_args) do
-    do_phone_search(enabled?(), search_args)
-  end
-
-  defp do_phone_search(false, _search_args) do
-    error = "TR disabled"
-    Logger.error(error)
-    {:error, error}
-  end
-
-  defp do_phone_search(true, search_args) do
-    phone_search_url()
-    |> http_client().post(phone_search_body(search_args), headers(), http_options())
-    |> parse_response()
-    |> case do
-      {:ok, xml_map} ->
-        xml_map
-        |> Map.get("PhoneResults")
-        |> Map.get("Uri")
-        |> case do
-          nil ->
-            message = "no search results URL returned from Thomson Reuters"
-            Logger.info(message)
-            {:error, message}
-
-          url ->
-            {:ok, url}
-        end
-
-      {:error, error} ->
-        Logger.error(error)
-        {:error, error}
-    end
-  end
 
   @impl EpiLocator.TRClientBehaviour
   def person_search(search_args) do
@@ -90,16 +53,12 @@ defmodule EpiLocator.TRClient do
     end
   end
 
-  def phone_search_url, do: url(@phone_search_api)
   def person_search_url, do: url(@person_search_api)
 
   def url(api_path) do
     endpoint = config!(:endpoint)
     "https://#{endpoint}/#{api_path}"
   end
-
-  @impl EpiLocator.TRClientBehaviour
-  def phone_search_results(uri), do: search_results(uri, "{http://clear.thomsonreuters.com/api/search/2.0}PhoneResultsPage")
 
   @impl EpiLocator.TRClientBehaviour
   def person_search_results(uri), do: search_results(uri, "{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
@@ -121,21 +80,6 @@ defmodule EpiLocator.TRClient do
   defp headers do
     auth = config!(:basic_auth)
     ["content-type": "application/xml", Authorization: "Basic #{auth}"]
-  end
-
-  def phone_search_body(first_name: first_name, last_name: last_name, street: street, city: city, state: state, phone: phone, zip_code: zip_code) do
-    assigns =
-      search_assigns(%{
-        first_name: first_name,
-        last_name: last_name,
-        street: street,
-        city: city,
-        state: state,
-        phone: phone,
-        zip_code: zip_code
-      })
-
-    Phoenix.View.render(EpiLocatorWeb.TRView, "phone_search.xml", assigns)
   end
 
   def person_search_body(first_name: first_name, last_name: last_name, street: street, city: city, state: state, phone: phone, zip_code: zip_code, dob: _dob) do

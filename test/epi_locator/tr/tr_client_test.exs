@@ -12,96 +12,10 @@ defmodule EpiLocator.TRClientTest do
   setup :tr_enabled
 
   @expected_headers ["content-type": "application/xml", Authorization: "Basic faked-base64-encoded-basic-auth"]
-  @expected_phone_search_url "https://s2s.beta.thomsonreuters.com/api/v2/phone/searchResults"
   @expected_person_search_url "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults"
-
-  # From the value inside of: test/fixtures/thomson-reuters/phone-search-post-response.xml:
-  @expected_url_for_phone_search_results "https://s2s.beta.thomsonreuters.com/api/v2/phone/searchResults/00000000733c12ed017358ac5ef44463"
 
   # From the value inside of: test/fixtures/thomson-reuters/person-search-post-response.xml:
   @expected_url_for_person_search_results "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5"
-
-  describe "phone_search POST" do
-    setup do
-      expect(HTTPoisonMock, :post, fn url, _body, headers, _options ->
-        assert headers == @expected_headers
-        assert url == @expected_phone_search_url
-
-        body = File.read!("test/fixtures/thomson-reuters/phone-search-post-response.xml")
-        {:ok, %HTTPoison.Response{status_code: 200, body: body}}
-      end)
-
-      :ok
-    end
-
-    test "returns some XML which has the search result URL" do
-      {:ok, results_uri} =
-        TRClient.phone_search(
-          first_name: "Eric",
-          last_name: "Sample-Document",
-          street: "4010 Cinnabar Drive",
-          city: "Eagan",
-          state: "MN",
-          phone: "612-555-8910",
-          zip_code: ""
-        )
-
-      assert results_uri == "https://s2s.beta.thomsonreuters.com/api/v2/phone/searchResults/00000000733c12ed017358ac5ef44463"
-    end
-  end
-
-  describe "phone_search POST - no results URL returned" do
-    setup do
-      expect(HTTPoisonMock, :post, fn _url, _body, _headers, _options ->
-        body = File.read!("test/fixtures/thomson-reuters/phone-search-post-response_no-results.xml")
-        {:ok, %HTTPoison.Response{status_code: 200, body: body}}
-      end)
-
-      :ok
-    end
-
-    test "returns an error" do
-      response =
-        TRClient.phone_search(
-          first_name: "Eric",
-          last_name: "Sample-Document",
-          street: "4010 Cinnabar Drive",
-          city: "Eagan",
-          state: "MN",
-          phone: "612-555-8910",
-          zip_code: ""
-        )
-
-      assert response == {:error, "no search results URL returned from Thomson Reuters"}
-    end
-  end
-
-  describe "phone_search POST - something other than a 200 was returned from TR" do
-    setup do
-      expect(HTTPoisonMock, :post, fn _url, _body, _headers, _options ->
-        {:ok, %HTTPoison.Response{status_code: 402, body: "something bad happened"}}
-      end)
-
-      :ok
-    end
-
-    test "returns an error with the status code" do
-      assert capture_log(fn ->
-               response =
-                 TRClient.phone_search(
-                   first_name: "Eric",
-                   last_name: "Sample-Document",
-                   street: "4010 Cinnabar Drive",
-                   city: "Eagan",
-                   state: "MN",
-                   phone: "612-555-8910",
-                   zip_code: ""
-                 )
-
-               assert response == {:error, "Status code 402 returned from Thomson Reuters.  Body: something bad happened"}
-             end) =~ "[error] Status code 402 returned from Thomson Reuters.  Body: something bad happened"
-    end
-  end
 
   describe "person_search POST" do
     setup do
@@ -186,44 +100,6 @@ defmodule EpiLocator.TRClientTest do
 
                assert response == {:error, "Status code 402 returned from Thomson Reuters.  Body: something bad happened"}
              end) =~ "[error] Status code 402 returned from Thomson Reuters.  Body: something bad happened"
-    end
-  end
-
-  describe "phone_search GET results" do
-    setup do
-      expect(HTTPoisonMock, :get, fn url, headers, _options ->
-        assert headers == @expected_headers
-        assert url == @expected_url_for_phone_search_results
-        body = File.read!("test/fixtures/thomson-reuters/phone-search-get-response.xml")
-        {:ok, %HTTPoison.Response{status_code: 200, body: body}}
-      end)
-
-      :ok
-    end
-
-    test "returns some XML which has the results of the prior search" do
-      results_uri = "https://s2s.beta.thomsonreuters.com/api/v2/phone/searchResults/00000000733c12ed017358ac5ef44463"
-      {:ok, results} = TRClient.phone_search_results(results_uri)
-      assert results["EndIndex"] == "0"
-    end
-  end
-
-  describe "phone_search GET results - something other than a 200 was returned from TR" do
-    setup do
-      expect(HTTPoisonMock, :get, fn _url, _headers, _options ->
-        {:ok, %HTTPoison.Response{status_code: 402, body: "something went horribly wrong"}}
-      end)
-
-      :ok
-    end
-
-    test "returns an error message" do
-      results_uri = "https://s2s.beta.thomsonreuters.com/api/v2/phone/searchResults/00000000733c12ed017358ac5ef44463"
-
-      assert capture_log(fn ->
-               response = TRClient.phone_search_results(results_uri)
-               assert response == {:error, "Status code 402 returned from Thomson Reuters.  Body: something went horribly wrong"}
-             end) =~ "[error] Status code 402 returned from Thomson Reuters.  Body: something went horribly wrong"
     end
   end
 
