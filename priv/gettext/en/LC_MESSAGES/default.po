@@ -11,10 +11,10 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/epi_locator_web/live/admin_search_live.ex:6
-#: lib/epi_locator_web/live/search_live.ex:6 lib/epi_locator_web/live_components/refine_search_results.ex:2
-#: lib/epi_locator_web/views/admin_search_view.ex:2 lib/epi_locator_web/views/error_view.ex:2
-#: lib/epi_locator_web/views/layout_view.ex:2 lib/epi_locator_web/views/metrics_view.ex:3
-#: lib/epi_locator_web/views/page_view.ex:2 lib/epi_locator_web/views/search_view.ex:2 lib/epi_locator_web/views/tr_view.ex:2
+#: lib/epi_locator_web/live/search_live.ex:6
+#: lib/epi_locator_web/live_components/refine_search_results.ex:2 lib/epi_locator_web/views/admin_session_view.ex:2
+#: lib/epi_locator_web/views/error_view.ex:2 lib/epi_locator_web/views/layout_view.ex:2
+#: lib/epi_locator_web/views/metrics_view.ex:3 lib/epi_locator_web/views/page_view.ex:2
+#: lib/epi_locator_web/views/search_view.ex:2 lib/epi_locator_web/views/tr_view.ex:2
 msgid "app name"
 msgstr "Epi Locator"
