@@ -10,14 +10,6 @@ defmodule EpiLocator.Monitoring.TelemetryToLoggerBridgeTest do
     on_exit(fn -> :telemetry.detach(TelemetryToLoggerBridge.telemetry_handler_id()) end)
   end
 
-  describe "successful admin search" do
-    test "creates the correct log message" do
-      assert capture_log([level: :info], fn ->
-               :telemetry.execute([:epi_locator, :tr, :admin_search, :success], %{}, %{count: 42, search_type: "phone", module: "EmittingModule"})
-             end) =~ "[EmittingModule] 42 search results returned from Thomson Reuters"
-    end
-  end
-
   describe "successful search" do
     test "creates the correct log message" do
       assert capture_log([level: :info], fn ->
@@ -28,8 +20,6 @@ defmodule EpiLocator.Monitoring.TelemetryToLoggerBridgeTest do
                  module: "EmittingModule",
                  user: "fixture-user"
                })
-
-               :telemetry.execute([:epi_locator, :tr, :admin_search, :success], %{}, %{count: 42, search_type: "phone", module: "EmittingModule"})
              end) =~ "[EmittingModule] User[fixture-user] Case[fixture-case-id] Domain[fixture-domain] received 42 search results returned from Thomson Reuters"
     end
   end

@@ -12,29 +12,6 @@ defmodule EpiLocator.Monitoring.TelemetryToMetricsBridgeTest do
     on_exit(fn -> :telemetry.detach(TelemetryToMetricsBridge.telemetry_handler_id()) end)
   end
 
-  describe "admin search error metrics" do
-    test "sends the correct data to the metrics api" do
-      Mox.expect(MetricsAPIBehaviourMock, :send, 1, fn metrics, keywords ->
-        assert %{"tr.admin_search.error.count" => 1} = metrics
-        assert [type: "TR Search"] = keywords
-      end)
-
-      :telemetry.execute([:epi_locator, :tr, :admin_search, :error], %{}, %{search_type: "phone"})
-    end
-  end
-
-  describe "admin search success metrics" do
-    test "sends the correct data to the metrics api" do
-      Mox.expect(MetricsAPIBehaviourMock, :send, 1, fn metrics, keywords ->
-        assert %{"tr.admin_search.success.count" => 1} = metrics
-        assert %{"tr.admin_search.results.count" => 42} = metrics
-        assert [type: "TR Search"] = keywords
-      end)
-
-      :telemetry.execute([:epi_locator, :tr, :admin_search, :success], %{}, %{count: 42, module: "EmittingModule"})
-    end
-  end
-
   describe "search error metrics" do
     test "sends the correct data to the metrics api" do
       expected_domain = "fixture-domain"
@@ -55,7 +32,13 @@ defmodule EpiLocator.Monitoring.TelemetryToMetricsBridgeTest do
         assert [type: "TR Search"] = keywords
       end)
 
-      :telemetry.execute([:epi_locator, :tr, :search, :error], %{}, %{case_id: "fixture-case-id", domain: expected_domain, case_type: expected_case_type, module: "EmittingModule", user: "fixture-user"})
+      :telemetry.execute([:epi_locator, :tr, :search, :error], %{}, %{
+        case_id: "fixture-case-id",
+        domain: expected_domain,
+        case_type: expected_case_type,
+        module: "EmittingModule",
+        user: "fixture-user"
+      })
     end
   end
 
