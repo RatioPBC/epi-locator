@@ -104,17 +104,14 @@ defmodule EpiLocatorWeb.SearchViewTest do
             first_name <- string(:printable, min_length: 2),
             last_name <- string(:printable, min_length: 2)
           ) do
-      assigns = %{first_name: first_name, last_name: last_name}
-      assert {^first_name, ^last_name} = SearchView.chosen_name("index_case", assigns)
-      assert {^first_name, ^last_name} = SearchView.chosen_name(nil, assigns)
+      name = "#{first_name} #{last_name}"
+      [first_name | last_names] = String.split(name)
+      last_name = last_names |> Enum.join(" ") |> String.trim()
 
-      parent_guardian = "#{first_name} #{last_name}"
-      assigns = %{parent_guardian: parent_guardian}
-      assert {^first_name, ^last_name} = SearchView.chosen_name("parent_guardian", assigns)
-
-      interviewee_parent_name = "#{first_name} #{last_name}"
-      assigns = %{interviewee_parent_name: interviewee_parent_name}
-      assert {^first_name, ^last_name} = SearchView.chosen_name("parent_guardian", assigns)
+      assert {^first_name, ^last_name} = SearchView.chosen_name("index_case", %{first_name: first_name, last_name: last_name})
+      assert {^first_name, ^last_name} = SearchView.chosen_name(nil, %{first_name: first_name, last_name: last_name})
+      assert {^first_name, ^last_name} = SearchView.chosen_name("parent_guardian", %{parent_guardian: name})
+      assert {^first_name, ^last_name} = SearchView.chosen_name("parent_guardian", %{interviewee_parent_name: name})
     end
   end
 end
