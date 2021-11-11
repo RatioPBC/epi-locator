@@ -24,6 +24,7 @@ defmodule EpiLocatorWeb.Acceptance.SearchTest do
   # From the value inside of: test/fixtures/thomson-reuters/phone-search-post-response.xml:
   @expected_url_for_results "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5"
 
+  @tag :skip
   describe "when the user is NOT logged into epi-locator" do
     test "they are redirected to root index and flashed that they are not allowed to log in", %{session: session} do
       mox_expectations_for_commcare_GET(0)
