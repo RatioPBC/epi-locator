@@ -51,14 +51,14 @@ defmodule EpiLocatorWeb.Plugs.RequireValidSignature do
 
   defp do_call(:invalid, conn) do
     conn
-    |> halt()
     |> send_resp(403, "Invalid signature")
+    |> halt()
   end
 
   defp do_call(:used, conn) do
     conn
-    |> halt()
     |> send_resp(403, "Signature already used")
+    |> halt()
   end
 
   def get_user_id(conn) do
