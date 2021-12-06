@@ -40,10 +40,9 @@ defmodule EpiLocatorWeb.LiveComponents.RefineSearchResultsTest do
 
     def render(assigns) do
       ~L"""
-      <%= component(
-        @socket,
+      <%= live_component(
         RefineSearchResults,
-        "refine-search-result",
+        id: "refine-search-result",
         search_case_or_parent_guardian: @search_case_or_parent_guardian,
         patient_case: @patient_case,
         on_refine_search_results: @on_refine_search_results,
