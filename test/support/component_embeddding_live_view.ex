@@ -5,8 +5,6 @@ defmodule EpiLocatorWeb.Test.ComponentEmbeddingLiveView do
     quote do
       use EpiLocatorWeb, :live_view
 
-      import EpiLocatorWeb.LiveComponents.Helpers
-
       def mount(_params, _session, socket) do
         {:ok, socket |> assign(unquote(default_assigns))}
       end

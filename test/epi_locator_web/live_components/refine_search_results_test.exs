@@ -2,7 +2,6 @@ defmodule EpiLocatorWeb.LiveComponents.RefineSearchResultsTest do
   use EpiLocatorWeb.ConnCase, async: true
   use Plug.Test
 
-  import EpiLocatorWeb.LiveComponents.Helpers
   import Phoenix.LiveViewTest
 
   alias EpiLocatorWeb.Test
