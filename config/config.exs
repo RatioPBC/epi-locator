@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :epi_locator,
   commcare_signature_key: System.get_env("COMMCARE_SIGNATURE_KEY"),
