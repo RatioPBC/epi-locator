@@ -20,7 +20,10 @@ defmodule EpiLocator.MixProject do
           ]
         ]
       ],
-      xref: [exclude: IEx]
+      xref: [exclude: IEx],
+      test_coverage: [
+        summary: [ threshold: 0 ]
+      ]
     ]
   end
 
