@@ -1,6 +1,6 @@
 <div data-role="refine-results" id="refine-results">
   <h5>Refine results</h5>
-  <%= f = form_for @changeset, "#", id: "refine-search-results-form", phx_change: "change", phx_submit: "refine", phx_target: @myself%>
+  <%= form_for @changeset, "#", [id: "refine-search-results-form", phx_change: "change", phx_submit: "refine", phx_target: @myself], fn f -> %>
     <div class="refine-field">
         <%= label f, :first_name, "First name" %>
         <%= text_input f, :first_name, id: "first-name" %>
@@ -31,5 +31,5 @@
         <%= content_tag(:button, "Refine", type: "submit") %>
         <%= content_tag(:button, "reset", type: "button", id: "reset-form", phx_click: "reset", phx_target: @myself) %>
     </div>
-  </form>
+  <% end %>
 </div>
