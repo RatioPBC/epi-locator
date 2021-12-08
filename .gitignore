@@ -23,6 +23,7 @@ erl_crash.dump
 ct_assist-*.tar
 
 # Ignore assets that are produced by build tools.
+/priv/static/
 /priv/static/assets/
 
 # Ignore digested assets cache.

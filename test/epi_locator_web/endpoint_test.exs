@@ -20,7 +20,7 @@ defmodule EpiLocatorWeb.EndpointTest do
     conn =
       conn
       |> bypass_through()
-      |> get(Routes.static_path(@endpoint, "/js/app.js"))
+      |> get(Routes.static_path(@endpoint, "/assets/app.js"))
 
     [sts] = get_resp_header(conn, "strict-transport-security")
 

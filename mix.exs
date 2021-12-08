@@ -8,7 +8,7 @@ defmodule EpiLocator.MixProject do
       dialyzer: dialyzer(),
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
@@ -22,7 +22,7 @@ defmodule EpiLocator.MixProject do
       ],
       xref: [exclude: IEx],
       test_coverage: [
-        summary: [ threshold: 0 ]
+        summary: [threshold: 0]
       ]
     ]
   end
@@ -48,9 +48,11 @@ defmodule EpiLocator.MixProject do
     [
       {:cachex, "~> 3.3"},
       {:commcare_api, "~> 0.2"},
+      {:dart_sass, "~> 0.3", runtime: Mix.env() == :dev},
       {:ecto, "~> 3.4"},
       {:ecto_sql, "~> 3.4"},
       {:elixir_xml_to_map, "~> 2.0"},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:euclid, "~> 0.2"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_cloudwatch, "~> 2.0"},
@@ -105,14 +107,11 @@ defmodule EpiLocator.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
+      setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", &compile_assets/1, "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": ["esbuild default --minify", "sass default --no-source-map --style=compressed", "phx.digest"]
     ]
-  end
-
-  defp compile_assets(_) do
-    Mix.shell().cmd("npm run build --prefix assets")
   end
 end
