@@ -74,6 +74,7 @@
           form.method = "POST";
           form.action = dest;
           form.target = "_blank";
+          form.style = "display: none;"
 
           for (var key in data) {
               var element = document.createElement("input");
