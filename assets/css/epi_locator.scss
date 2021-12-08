@@ -53,11 +53,6 @@ body {
   flex-direction: column;
 }
 
-// Fixes LiveView load-progress bar. Phoenix uses npm library nprogress.
-#nprogress {
-  max-height: 0;
-}
-
 // this is the "main" component's container, which is a sibling of header and footer
 body > div {
   flex-grow: 1;
