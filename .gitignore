@@ -20,10 +20,9 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-ct_assist-*.tar
+epi_locator-*.tar
 
 # Ignore assets that are produced by build tools.
-/priv/static/
 /priv/static/assets/
 
 # Ignore digested assets cache.
