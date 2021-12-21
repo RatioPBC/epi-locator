@@ -142,6 +142,9 @@ defmodule EpiLocator.MixProject do
       #content.content-inner {
         max-width: 1282px;
       }
+      .mermaid-container {
+        background-color: white;
+      }
     </style>
     """
   end
