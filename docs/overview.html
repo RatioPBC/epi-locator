@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.26.0">
+    <meta name="project" content="epi_locator v0.1.0">
+
+    <title>Overview — epi_locator v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-b5076885a795c65e636c.css" />
+
+    <script src="dist/sidebar_items-34f052f10b.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-a404e1e870b77c874f9e.js"></script>
+
+<style>
+  #content.content-inner {
+    max-width: 1282px;
+  }
+</style>
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="epi-locator.html" class="sidebar-projectName" translate="no">
+epi_locator
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.1.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">GUIDES</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1 id="content">
+
+
+    <a href="https://github.com/RatioPBC/epi-locator/blob/main/guides/overview.md#L1" title="View Source" class="view-source" rel="help">
+      <span class="icon-code" aria-hidden="true"></span>
+      <span class="sr-only">View Source</span>
+    </a>
+
+</h1>
+
+<h2 id="overview" class="section-heading">
+  <a href="#overview" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Overview
+</h2>
+<p>In NYS, Epi Locator is deployed by its original name, CT Assist.</p><h3 id="contact-tracer-workflow" class="section-heading">
+  <a href="#contact-tracer-workflow" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Contact Tracer Workflow
+</h3>
+<p>As a contact tracer (&quot;CT&quot;) works on cases in CommCare, they may find a patient case
+is missing full and/or accurate contact information. From the Case Investigation
+form, the CT can click the &quot;Search CT Assist for phone and address&quot; link which will
+open Epi Locator in a new browser tab and perform a search against the Thomson Reuters (&quot;TR&quot;)
+<a href="https://developerportal.thomsonreuters.com/clear-system-system">CLEAR S2S API</a>. The CT
+can then copy relevant contact information from Epi Locator into their clipboard, then
+into CommCare. Epi Locator does not write data to CommCare.</p><pre><code class="mermaid">sequenceDiagram;    CT->>+CommCare: Click button;    CommCare->>CommCare: generate signature;    CommCare->>Epi Locator: POST;    alt signature in cache;        Signature Cache-->>Epi Locator: used signature;        Epi Locator-->>CT: access denied;    else signature not in cache;        alt signature invalid;            Signature Cache-->>Epi Locator: invalid signature;            Epi Locator-->>CT: access denied;        else;            Signature Cache-->>Epi Locator: valid signature;            alt query in cache;                Query Cache-->>Epi Locator: return results;            else query not in cache;                Epi Locator->>CLEAR S2S: initiate search;                CLEAR S2S->>CLEAR S2S: perform search;                CLEAR S2S-->>Epi Locator: search results;                Epi Locator-->>CT: present results;            end;        end;    end;</code></pre><h3 id="integration-with-commcare" class="section-heading">
+  <a href="#integration-with-commcare" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Integration with CommCare
+</h3>
+<p>Epi Locator authenticates with CommCare by verifying an HMAC signature that is passed
+from CommCare to Epi Locator by a <code class="inline">form POST</code>. Please see the CommCare <a href="https://github.com/dimagi/commcare-hq/blob/74bc31910f692126f03c46a350ab8ae5700f87dd/corehq/apps/integration/static/integration/js/hmac_callout.js">source 
+code</a> 
+for their implementation. Epi Locator mirrors this implementation locally for development purposes in the 
+  <a href="https://github.com/RatioPBC/epi-locator/blob/main/lib/epi_locator_web/templates/page/commcare_signature.html.eex">commcare_signature.html.eex</a> template.</p><p>The signature is verified in <a href="EpiLocatorWeb.Plugs.RequireValidSignature.html"><code class="inline">EpiLocatorWeb.Plugs.RequireValidSignature</code></a> with <a href="EpiLocator.Signature.html#valid?/3"><code class="inline">EpiLocator.Signature.valid?/3</code></a>. 
+We store the signature in a cache in <a href="EpiLocator.Signature.Cache.html"><code class="inline">EpiLocator.Signature.Cache</code></a> and reject any signatures that have
+already been used.</p><p>If the signature is valid, Epi Locator performs a search through cache to the TR CLEAR S2S API.
+Because TR charges per query, we store results from previous queries in our cache to
+minimize costs. If a cache entry for a query doesn't already exist, we make an API request and store
+the results.</p><h3 id="clear-s2s-api-integration" class="section-heading">
+  <a href="#clear-s2s-api-integration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  CLEAR S2S API Integration
+</h3>
+<p>In order to make requests against the CLEAR S2S API, one must ask TR to provision a certificate
+that is used to sign HTTP requests to the API. They will send a <code class="inline">PFX</code> file, which will need the certificates 
+extracted via the following command:</p><pre><code class="makeup elixir"><span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">input</span><span class="o">.</span><span class="n">pfx</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">certificate</span><span class="o">.</span><span class="n">cer</span><span class="w"> </span><span class="o">-</span><span class="n">nodes</span></code></pre><p>The result file contains a key and 2 certificates. The first certificate in the cert chain will need all the newlines converted to literal <code class="inline">\n</code>
+characters and made available to the application via environment variables:</p><pre><code class="makeup elixir"><span class="nc">THOMSON_REUTERS_BASIC_AUTH</span><span class="w">
+</span><span class="nc">THOMSON_REUTERS_CERT_PASSWORD</span><span class="w">
+</span><span class="nc">THOMSON_REUTERS_API_ENDPOINT</span><span class="w">
+</span><span class="nc">THOMSON_REUTERS_PRIVATE_KEY</span><span class="w">
+</span><span class="nc">THOMSON_REUTERS_PUBLIC_CERT</span></code></pre><p>See <a href="EpiLocator.ThomsonReuters.Config.html"><code class="inline">EpiLocator.ThomsonReuters.Config</code></a> for more details. Each time a query is made, a 
+<a href="EpiLocator.QueryResultLog.html"><code class="inline">EpiLocator.QueryResultLog</code></a> is stored with stats relevant to the query. These stats can be accessed
+through the admin login, where one can download all entries or monthly summaries.</p><h3 id="refining-search-results" class="section-heading">
+  <a href="#refining-search-results" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Refining Search Results
+</h3>
+<p>CTs have the ability, when presented with multiple search results, to refine the results.</p><p><img src="assets/refine-results.png" alt=""/></p><p>Each time the results are refined, a <a href="EpiLocator.RefinementLog.html"><code class="inline">EpiLocator.RefinementLog</code></a> is stored with stats relevant
+to the specific refinement. These stats can be access through the admin login, where one can
+download all entries or monthly summaries.</p><h3 id="performance" class="section-heading">
+  <a href="#performance" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Performance
+</h3>
+<p>75% of requests to the CLEAR S2S API are returned within 700-1000 ms.</p><pre><code class="sql">WITH query_result_logs_stats AS (
+    SELECT
+        min(msec_elapsed) AS min,
+        max(msec_elapsed) AS max,
+        count(*) AS total_count
+    FROM
+        query_result_logs
+    WHERE
+        msec_elapsed BETWEEN 100 AND 2560
+),
+histogram AS (
+    SELECT
+        width_bucket(msec_elapsed, min, max, 49) AS bucket,
+        int4range(min(msec_elapsed), max(msec_elapsed), '[]') AS RANGE,
+        count(*) AS freq
+    FROM
+        query_result_logs,
+        query_result_logs_stats
+    WHERE
+        msec_elapsed IS NOT NULL
+        AND msec_elapsed != 0
+        AND msec_elapsed BETWEEN 100 AND 2560
+    GROUP BY
+        bucket
+    ORDER BY
+        bucket
+),
+freeq AS (
+    SELECT
+        bucket,
+        RANGE,
+        freq,
+        repeat('■', (freq::float / max(freq) OVER () * 100)::int) AS bar,
+        freq::float / total_count * 100 AS pct
+    FROM
+        histogram,
+        query_result_logs_stats
+    GROUP BY
+        bucket,
+        RANGE,
+        freq,
+        pct
+    ORDER BY
+        bucket
+)
+SELECT
+    *
+FROM
+    freeq</code></pre><h3 id="releases" class="section-heading">
+  <a href="#releases" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Releases
+</h3>
+<p>Please see the <a href="https://ratiopbc.slab.com/public/posts/3curdkow">Release log</a>.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="epi-locator.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Epi Locator
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="license.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+LICENSE
+        </span>
+      </a>
+
+  </div>
+</div>
+
+      <footer class="footer">
+
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.26.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire" translate="no">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button display-settings">
+            Settings
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.6/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    mermaid.initialize({ startOnLoad: false, theme: "default" });
+    let id = 0;
+    for (const codeEl of document.querySelectorAll("pre code.mermaid")) {
+      const preEl = codeEl.parentElement;
+      const graphDefinition = codeEl.textContent;
+      const graphEl = document.createElement("div");
+      graphEl.classList.add("mermaid-container");
+      const graphId = "mermaid-graph-" + id++;
+      mermaid.render(graphId, graphDefinition, function (svgSource, bindListeners) {
+        graphEl.innerHTML = svgSource;
+        bindListeners && bindListeners(graphEl);
+        preEl.insertAdjacentElement("afterend", graphEl);
+        preEl.remove();
+      });
+    }
+  });
+</script>
+
+  </body>
+</html>
