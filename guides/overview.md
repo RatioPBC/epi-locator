@@ -12,6 +12,34 @@ open Epi Locator in a new browser tab and perform a search against the Thomson R
 can then copy relevant contact information from Epi Locator into their clipboard, then
 into CommCare. Epi Locator does not write data to CommCare.
 
+<pre>
+<code class="mermaid">
+sequenceDiagram;
+    CT->>+CommCare: Click button;
+    CommCare->>CommCare: generate signature;
+    CommCare->>Epi Locator: POST;
+    alt signature in cache;
+        Signature Cache-->>Epi Locator: used signature;
+        Epi Locator-->>CT: access denied;
+    else signature not in cache;
+        alt signature invalid;
+            Signature Cache-->>Epi Locator: invalid signature;
+            Epi Locator-->>CT: access denied;
+        else;
+            Signature Cache-->>Epi Locator: valid signature;
+            alt query in cache;
+                Query Cache-->>Epi Locator: return results;
+            else query not in cache;
+                Epi Locator->>CLEAR S2S: initiate search;
+                CLEAR S2S->>CLEAR S2S: perform search;
+                CLEAR S2S-->>Epi Locator: search results;
+                Epi Locator-->>CT: present results;
+            end;
+        end;
+    end;
+</code>
+</pre>
+
 ### Integration with CommCare
 
 Epi Locator authenticates with CommCare by verifying an HMAC signature that is passed
@@ -66,7 +94,7 @@ download all entries or monthly summaries.
 
 ### Performance
 
-75% of requests to the CLEAR S2S API are within 700-1000 ms.
+75% of requests to the CLEAR S2S API are returned within 700-1000 ms.
 
 ```sql
 WITH query_result_logs_stats AS (

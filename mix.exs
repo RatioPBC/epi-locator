@@ -102,12 +102,53 @@ defmodule EpiLocator.MixProject do
       extras: extras(),
       formatters: ["html"],
       source_url: "https://github.com/RatioPBC/epi-locator",
-      nest_modules_by_prefix: []
+      nest_modules_by_prefix: [],
+      before_closing_body_tag: &before_closing_body_tag/1,
+      before_closing_head_tag: &before_closing_head_tag/1
     ]
   end
 
+  defp before_closing_body_tag(:html) do
+    """
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.6/dist/mermaid.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        mermaid.initialize({ startOnLoad: false, theme: "default" });
+        let id = 0;
+        for (const codeEl of document.querySelectorAll("pre code.mermaid")) {
+          const preEl = codeEl.parentElement;
+          const graphDefinition = codeEl.textContent;
+          const graphEl = document.createElement("div");
+          graphEl.classList.add("mermaid-container");
+          const graphId = "mermaid-graph-" + id++;
+          mermaid.render(graphId, graphDefinition, function (svgSource, bindListeners) {
+            graphEl.innerHTML = svgSource;
+            bindListeners && bindListeners(graphEl);
+            preEl.insertAdjacentElement("afterend", graphEl);
+            preEl.remove();
+          });
+        }
+      });
+    </script>
+    """
+  end
+
+  defp before_closing_body_tag(_), do: ""
+
+  defp before_closing_head_tag(:html) do
+    """
+    <style>
+      #content.content-inner {
+        max-width: 1282px;
+      }
+    </style>
+    """
+  end
+
+  defp before_closing_head_tag(_), do: ""
+
   defp extras do
-    ["guides/overview.md", "LICENSE", "README.md": [filename: "epi-locator", title: "Epi Locator"]]
+    ["README.md": [filename: "epi-locator", title: "Epi Locator"], "guides/overview.md": [title: "Overview"], LICENSE: []]
   end
 
   defp dialyzer do
