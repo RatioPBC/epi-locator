@@ -64,6 +64,62 @@ Each time the results are refined, a `EpiLocator.RefinementLog` is stored with s
 to the specific refinement. These stats can be access through the admin login, where one can
 download all entries or monthly summaries.
 
+### Performance
+
+75% of requests to the CLEAR S2S API are within 700-1000 ms.
+
+```sql
+WITH query_result_logs_stats AS (
+    SELECT
+        min(msec_elapsed) AS min,
+        max(msec_elapsed) AS max,
+        count(*) AS total_count
+    FROM
+        query_result_logs
+    WHERE
+        msec_elapsed BETWEEN 100 AND 2560
+),
+histogram AS (
+    SELECT
+        width_bucket(msec_elapsed, min, max, 49) AS bucket,
+        int4range(min(msec_elapsed), max(msec_elapsed), '[]') AS RANGE,
+        count(*) AS freq
+    FROM
+        query_result_logs,
+        query_result_logs_stats
+    WHERE
+        msec_elapsed IS NOT NULL
+        AND msec_elapsed != 0
+        AND msec_elapsed BETWEEN 100 AND 2560
+    GROUP BY
+        bucket
+    ORDER BY
+        bucket
+),
+freeq AS (
+    SELECT
+        bucket,
+        RANGE,
+        freq,
+        repeat('■', (freq::float / max(freq) OVER () * 100)::int) AS bar,
+        freq::float / total_count * 100 AS pct
+    FROM
+        histogram,
+        query_result_logs_stats
+    GROUP BY
+        bucket,
+        RANGE,
+        freq,
+        pct
+    ORDER BY
+        bucket
+)
+SELECT
+    *
+FROM
+    freeq
+```
+
 ### Releases
 
 Please see the [Release log](https://ratiopbc.slab.com/public/posts/3curdkow).
