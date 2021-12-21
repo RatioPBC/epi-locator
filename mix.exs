@@ -104,7 +104,8 @@ defmodule EpiLocator.MixProject do
       source_url: "https://github.com/RatioPBC/epi-locator",
       nest_modules_by_prefix: [],
       before_closing_body_tag: &before_closing_body_tag/1,
-      before_closing_head_tag: &before_closing_head_tag/1
+      before_closing_head_tag: &before_closing_head_tag/1,
+      output: "docs"
     ]
   end
 
@@ -177,6 +178,6 @@ defmodule EpiLocator.MixProject do
   end
 
   defp copy_images(_) do
-    File.cp_r("guides/assets", "doc/assets")
+    File.cp_r("guides/assets", "docs/assets")
   end
 end
