@@ -12,6 +12,7 @@ defmodule EpiLocator.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      docs: docs(),
       releases: [
         epi_locator: [
           include_executables_for: [:unix],
@@ -56,6 +57,7 @@ defmodule EpiLocator.MixProject do
       {:euclid, "~> 0.2"},
       {:ex_aws, "~> 2.0"},
       {:ex_aws_cloudwatch, "~> 2.0"},
+      {:ex_doc, "~> 0.21", runtime: false},
       {:floki, ">= 0.0.0"},
       {:fun_with_flags, "~> 1.5"},
       {:fun_with_flags_ui, "~> 0.7"},
@@ -91,6 +93,23 @@ defmodule EpiLocator.MixProject do
     ]
   end
 
+  defp docs do
+    [
+      api_reference: false,
+      main: "epi-locator",
+      assets: "guides/assets",
+      extra_section: "GUIDES",
+      extras: extras(),
+      formatters: ["html"],
+      source_url: "https://github.com/RatioPBC/epi-locator",
+      nest_modules_by_prefix: []
+    ]
+  end
+
+  defp extras do
+    ["guides/overview.md", "LICENSE", "README.md": [filename: "epi-locator", title: "Epi Locator"]]
+  end
+
   defp dialyzer do
     [
       plt_add_apps: [:iex],
@@ -107,11 +126,16 @@ defmodule EpiLocator.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      docs: ["docs", &copy_images/1],
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["esbuild default --minify", "sass default --no-source-map --style=compressed", "phx.digest"]
     ]
+  end
+
+  defp copy_images(_) do
+    File.cp_r("guides/assets", "doc/assets")
   end
 end
