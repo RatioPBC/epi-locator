@@ -1,8 +1,8 @@
-## Overview
+# Overview
 
 In NYS, Epi Locator is deployed by its original name, CT Assist.
 
-### Contact Tracer Workflow
+## Contact Tracer Workflow
 
 As a contact tracer ("CT") works on cases in CommCare, they may find a patient case
 is missing full and/or accurate contact information. From the Case Investigation
@@ -40,7 +40,7 @@ sequenceDiagram;
 </code>
 </pre>
 
-### Integration with CommCare
+## Integration with CommCare
 
 Epi Locator authenticates with CommCare by verifying an HMAC signature that is passed
 from CommCare to Epi Locator by a `form POST`. Please see the CommCare [source 
@@ -57,7 +57,7 @@ Because TR charges per query, we store results from previous queries in our cach
 minimize costs. If a cache entry for a query doesn't already exist, we make an API request and store
 the results.
 
-### CLEAR S2S API Integration
+## CLEAR S2S API Integration
 
 In order to make requests against the CLEAR S2S API, one must ask TR to provision a certificate
 that is used to sign HTTP requests to the API. They will send a `PFX` file, which will need the certificates 
@@ -82,7 +82,7 @@ See `EpiLocator.ThomsonReuters.Config` for more details. Each time a query is ma
 `EpiLocator.QueryResultLog` is stored with stats relevant to the query. These stats can be accessed
 through the admin login, where one can download all entries or monthly summaries.
 
-### Refining Search Results
+## Refining Search Results
 
 CTs have the ability, when presented with multiple search results, to refine the results.
 
@@ -92,7 +92,7 @@ Each time the results are refined, a `EpiLocator.RefinementLog` is stored with s
 to the specific refinement. These stats can be access through the admin login, where one can
 download all entries or monthly summaries.
 
-### Performance
+## Performance
 
 75% of requests to the CLEAR S2S API are returned within 700-1000 ms.
 
@@ -148,6 +148,6 @@ FROM
     freeq
 ```
 
-### Releases
+## Releases
 
 Please see the [Release log](https://ratiopbc.slab.com/public/posts/3curdkow).
