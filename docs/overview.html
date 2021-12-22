@@ -10,7 +10,7 @@
     <title>Overview — epi_locator v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-b5076885a795c65e636c.css" />
 
-    <script src="dist/sidebar_items-34f052f10b.js"></script>
+    <script src="dist/sidebar_items-a3525d4a9b.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -88,7 +88,7 @@ epi_locator
     <div id="content" class="content-inner">
 
 <h1 id="content">
-
+Overview
 
     <a href="https://github.com/RatioPBC/epi-locator/blob/main/guides/overview.md#L1" title="View Source" class="view-source" rel="help">
       <span class="icon-code" aria-hidden="true"></span>
@@ -97,24 +97,20 @@ epi_locator
 
 </h1>
 
-<h2 id="overview" class="section-heading">
-  <a href="#overview" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Overview
-</h2>
-<p>In NYS, Epi Locator is deployed by its original name, CT Assist.</p><h3 id="contact-tracer-workflow" class="section-heading">
+<p>In NYS, Epi Locator is deployed by its original name, CT Assist.</p><h2 id="contact-tracer-workflow" class="section-heading">
   <a href="#contact-tracer-workflow" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Contact Tracer Workflow
-</h3>
+</h2>
 <p>As a contact tracer (&quot;CT&quot;) works on cases in CommCare, they may find a patient case
 is missing full and/or accurate contact information. From the Case Investigation
 form, the CT can click the &quot;Search CT Assist for phone and address&quot; link which will
 open Epi Locator in a new browser tab and perform a search against the Thomson Reuters (&quot;TR&quot;)
 <a href="https://developerportal.thomsonreuters.com/clear-system-system">CLEAR S2S API</a>. The CT
 can then copy relevant contact information from Epi Locator into their clipboard, then
-into CommCare. Epi Locator does not write data to CommCare.</p><pre><code class="mermaid">sequenceDiagram;    CT->>+CommCare: Click button;    CommCare->>CommCare: generate signature;    CommCare->>Epi Locator: POST;    alt signature in cache;        Signature Cache-->>Epi Locator: used signature;        Epi Locator-->>CT: access denied;    else signature not in cache;        alt signature invalid;            Signature Cache-->>Epi Locator: invalid signature;            Epi Locator-->>CT: access denied;        else;            Signature Cache-->>Epi Locator: valid signature;            alt query in cache;                Query Cache-->>Epi Locator: return results;            else query not in cache;                Epi Locator->>CLEAR S2S: initiate search;                CLEAR S2S->>CLEAR S2S: perform search;                CLEAR S2S-->>Epi Locator: search results;                Epi Locator-->>CT: present results;            end;        end;    end;</code></pre><h3 id="integration-with-commcare" class="section-heading">
+into CommCare. Epi Locator does not write data to CommCare.</p><pre><code class="mermaid">sequenceDiagram;    CT->>+CommCare: Click button;    CommCare->>CommCare: generate signature;    CommCare->>Epi Locator: POST;    alt signature in cache;        Signature Cache-->>Epi Locator: used signature;        Epi Locator-->>CT: access denied;    else signature not in cache;        alt signature invalid;            Signature Cache-->>Epi Locator: invalid signature;            Epi Locator-->>CT: access denied;        else;            Signature Cache-->>Epi Locator: valid signature;            alt query in cache;                Query Cache-->>Epi Locator: return results;            else query not in cache;                Epi Locator->>CLEAR S2S: initiate search;                CLEAR S2S->>CLEAR S2S: perform search;                CLEAR S2S-->>Epi Locator: search results;                Epi Locator-->>CT: present results;            end;        end;    end;</code></pre><h2 id="integration-with-commcare" class="section-heading">
   <a href="#integration-with-commcare" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Integration with CommCare
-</h3>
+</h2>
 <p>Epi Locator authenticates with CommCare by verifying an HMAC signature that is passed
 from CommCare to Epi Locator by a <code class="inline">form POST</code>. Please see the CommCare <a href="https://github.com/dimagi/commcare-hq/blob/74bc31910f692126f03c46a350ab8ae5700f87dd/corehq/apps/integration/static/integration/js/hmac_callout.js">source 
 code</a> 
@@ -124,10 +120,10 @@ We store the signature in a cache in <a href="EpiLocator.Signature.Cache.html"><
 already been used.</p><p>If the signature is valid, Epi Locator performs a search through cache to the TR CLEAR S2S API.
 Because TR charges per query, we store results from previous queries in our cache to
 minimize costs. If a cache entry for a query doesn't already exist, we make an API request and store
-the results.</p><h3 id="clear-s2s-api-integration" class="section-heading">
+the results.</p><h2 id="clear-s2s-api-integration" class="section-heading">
   <a href="#clear-s2s-api-integration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   CLEAR S2S API Integration
-</h3>
+</h2>
 <p>In order to make requests against the CLEAR S2S API, one must ask TR to provision a certificate
 that is used to sign HTTP requests to the API. They will send a <code class="inline">PFX</code> file, which will need the certificates 
 extracted via the following command:</p><pre><code class="makeup elixir"><span class="n">openssl</span><span class="w"> </span><span class="n">pkcs12</span><span class="w"> </span><span class="o">-</span><span class="ow">in</span><span class="w"> </span><span class="n">input</span><span class="o">.</span><span class="n">pfx</span><span class="w"> </span><span class="o">-</span><span class="n">out</span><span class="w"> </span><span class="n">certificate</span><span class="o">.</span><span class="n">cer</span><span class="w"> </span><span class="o">-</span><span class="n">nodes</span></code></pre><p>The result file contains a key and 2 certificates. The first certificate in the cert chain will need all the newlines converted to literal <code class="inline">\n</code>
@@ -137,16 +133,16 @@ characters and made available to the application via environment variables:</p><
 </span><span class="nc">THOMSON_REUTERS_PRIVATE_KEY</span><span class="w">
 </span><span class="nc">THOMSON_REUTERS_PUBLIC_CERT</span></code></pre><p>See <a href="EpiLocator.ThomsonReuters.Config.html"><code class="inline">EpiLocator.ThomsonReuters.Config</code></a> for more details. Each time a query is made, a 
 <a href="EpiLocator.QueryResultLog.html"><code class="inline">EpiLocator.QueryResultLog</code></a> is stored with stats relevant to the query. These stats can be accessed
-through the admin login, where one can download all entries or monthly summaries.</p><h3 id="refining-search-results" class="section-heading">
+through the admin login, where one can download all entries or monthly summaries.</p><h2 id="refining-search-results" class="section-heading">
   <a href="#refining-search-results" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Refining Search Results
-</h3>
+</h2>
 <p>CTs have the ability, when presented with multiple search results, to refine the results.</p><p><img src="assets/refine-results.png" alt=""/></p><p>Each time the results are refined, a <a href="EpiLocator.RefinementLog.html"><code class="inline">EpiLocator.RefinementLog</code></a> is stored with stats relevant
 to the specific refinement. These stats can be access through the admin login, where one can
-download all entries or monthly summaries.</p><h3 id="performance" class="section-heading">
+download all entries or monthly summaries.</p><h2 id="performance" class="section-heading">
   <a href="#performance" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Performance
-</h3>
+</h2>
 <p>75% of requests to the CLEAR S2S API are returned within 700-1000 ms.</p><pre><code class="sql">WITH query_result_logs_stats AS (
     SELECT
         min(msec_elapsed) AS min,
@@ -195,10 +191,10 @@ freeq AS (
 SELECT
     *
 FROM
-    freeq</code></pre><h3 id="releases" class="section-heading">
+    freeq</code></pre><h2 id="releases" class="section-heading">
   <a href="#releases" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Releases
-</h3>
+</h2>
 <p>Please see the <a href="https://ratiopbc.slab.com/public/posts/3curdkow">Release log</a>.</p>
 <div class="bottom-actions">
   <div class="bottom-actions-item">
