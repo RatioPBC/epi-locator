@@ -96,6 +96,7 @@ download all entries or monthly summaries.
 
 75% of requests to the CLEAR S2S API are returned within 700-1000 ms.
 
+<div class="details-following-code" data-summary="SQL Code"></div>
 ```sql
 WITH query_result_logs_stats AS (
     SELECT
