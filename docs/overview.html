@@ -21,6 +21,18 @@
   .mermaid-container {
     background-color: white;
   }
+
+  .details-following-code ~ pre {
+    display: none;
+  }
+
+  .details-following-code details.with-code pre {
+    display: block;
+  }
+
+  details > summary {
+    cursor: pointer;
+  }
 </style>
 
   </head>
@@ -141,7 +153,7 @@ download all entries or monthly summaries.</p><h2 id="performance" class="sectio
   <a href="#performance" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Performance
 </h2>
-<p>75% of requests to the CLEAR S2S API are returned within 700-1000 ms.</p><pre><code class="sql">WITH query_result_logs_stats AS (
+<p>75% of requests to the CLEAR S2S API are returned within 700-1000 ms.</p><div class="details-following-code" data-summary="SQL Code"></div><pre><code class="sql">WITH query_result_logs_stats AS (
     SELECT
         min(msec_elapsed) AS min,
         max(msec_elapsed) AS max,
@@ -269,6 +281,18 @@ LICENSE
         preEl.insertAdjacentElement("afterend", graphEl);
         preEl.remove();
       });
+    }
+
+    for (const d of document.getElementsByClassName("details-following-code")) {
+      const codeBlock = d.nextSibling;
+      const details = document.createElement("details");
+      details.classList.add("with-code");
+      const summary = document.createElement("summary");
+      const summaryText = document.createTextNode(d.dataset.summary);
+      summary.appendChild(summaryText);
+      details.appendChild(summary);
+      details.appendChild(codeBlock);
+      d.appendChild(details);
     }
   });
 </script>
