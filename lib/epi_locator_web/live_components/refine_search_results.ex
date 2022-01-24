@@ -128,9 +128,9 @@ defmodule EpiLocatorWeb.LiveComponents.RefineSearchResults do
   end
 
   defp prepare_parameters_for_callback(params) do
-    :maps.filter(fn _, v -> Euclid.Exists.present?(v) end, params)
+    :maps.filter(fn _, v -> Euclid.Term.present?(v) end, params)
     |> prepare_dob_parameters()
-    |> Euclid.Extra.Map.atomize_keys()
+    |> Euclid.Map.atomize_keys()
   end
 
   defp prepare_dob_parameters(params) do

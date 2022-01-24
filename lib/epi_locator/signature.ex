@@ -30,7 +30,7 @@ defmodule EpiLocator.Signature do
     message
     |> sign(secret)
     |> encode()
-    |> Euclid.Extra.String.secure_compare(signature)
+    |> Euclid.String.secure_compare(signature)
   end
 
   @ttl Application.compile_env!(:epi_locator, EpiLocator)[:ttl]

@@ -6,7 +6,7 @@ defmodule EpiLocatorWeb.Test.Html do
     do: html |> all(css_query, &tid/1) |> List.flatten()
 
   def all(html, css_query, attr: attr) when not is_binary(html),
-    do: html |> all(css_query, &Floki.attribute(&1, Euclid.Extra.Atom.to_string(attr))) |> List.flatten()
+    do: html |> all(css_query, &Floki.attribute(&1, Euclid.Atom.to_string(attr))) |> List.flatten()
 
   def all(html, css_query, fun) when not is_binary(html) and is_function(fun),
     do: html |> find(css_query) |> Enum.map(fun)
@@ -21,7 +21,7 @@ defmodule EpiLocatorWeb.Test.Html do
     do: html |> find(css_query) |> assert_found(html, css_query)
 
   def has_role?(html, role),
-    do: html |> find("[data-role=#{role}]") |> Euclid.Exists.present?()
+    do: html |> find("[data-role=#{role}]") |> Euclid.Term.present?()
 
   def html(html) when not is_binary(html),
     do: html |> Floki.raw_html()
@@ -42,13 +42,13 @@ defmodule EpiLocatorWeb.Test.Html do
     do: html_string |> Floki.parse_document!()
 
   def page_title(html) when not is_binary(html),
-    do: html |> html("title") |> Euclid.Extra.Enum.first!() |> parse() |> Floki.text()
+    do: html |> html("title") |> Euclid.Enum.first!() |> parse() |> Floki.text()
 
   def present?(html, role: role) when not is_binary(html),
     do: html |> present?(selector: "[data-role=#{role}]")
 
   def present?(html, selector: selector) when not is_binary(html),
-    do: html |> find(selector) |> Euclid.Exists.present?()
+    do: html |> find(selector) |> Euclid.Term.present?()
 
   def role_text(html, role),
     do: html |> text("[data-role=#{role}]")
