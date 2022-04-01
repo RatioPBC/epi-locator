@@ -2,7 +2,7 @@ defmodule EpiLocator.SignatureTest do
   use ExUnit.Case, async: true
   require Phoenix.ConnTest
   alias EpiLocator.Signature
-  import Euclid.Test.Extra.Assertions
+  import Euclid.Assertions
   import Mox
 
   setup :set_mox_from_context

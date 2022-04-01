@@ -31,7 +31,7 @@ defmodule EpiLocatorWeb.LayoutViewTest do
       env_from_context(context, :app_favicon_url)
     end
 
-    @tag app_favicon_url: Euclid.Extra.Random.string()
+    @tag app_favicon_url: Euclid.Random.string()
     test "returns tag with configured app favicon", %{app_favicon_url: app_favicon_url, conn: conn} do
       assert conn
              |> get("/")
@@ -52,8 +52,8 @@ defmodule EpiLocatorWeb.LayoutViewTest do
       |> env_from_context(:app_logo_link_url)
     end
 
-    @tag app_logo_url: Euclid.Extra.Random.string()
-    @tag app_logo_link_url: Euclid.Extra.Random.string()
+    @tag app_logo_url: Euclid.Random.string()
+    @tag app_logo_link_url: Euclid.Random.string()
     test "returns tag with configured logo URL and destination", %{app_logo_link_url: destination, app_logo_url: url, conn: conn} do
       html = conn |> View.header_logo_link() |> safe_to_string()
       assert html =~ destination
@@ -81,11 +81,11 @@ defmodule EpiLocatorWeb.LayoutViewTest do
     end
 
     test "returns tag with assigned page title" do
-      page_title = Euclid.Extra.Random.string()
+      page_title = Euclid.Random.string()
       assert %Plug.Conn{assigns: %{page_title: page_title}} |> View.title_tag() |> safe_to_string() =~ page_title
     end
 
-    @tag app_name: Euclid.Extra.Random.string()
+    @tag app_name: Euclid.Random.string()
     test "returns tag with configured app name", %{app_name: app_name} do
       assert %Plug.Conn{assigns: %{}} |> View.title_tag() |> safe_to_string() =~ app_name
     end
