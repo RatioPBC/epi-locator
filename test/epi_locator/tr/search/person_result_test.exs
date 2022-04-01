@@ -90,7 +90,7 @@ defmodule EpiLocator.Search.PersonResultTest do
     results =
       File.read!("test/fixtures/thomson-reuters/person-search-get-response.xml")
       |> XmlToMap.naive_map()
-      |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
+      |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPageV3")
       |> Map.get("ResultGroup")
 
     person_result = PersonResult.new(results)
