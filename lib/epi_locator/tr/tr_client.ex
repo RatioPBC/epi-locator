@@ -9,7 +9,7 @@ defmodule EpiLocator.TRClient do
   alias EpiLocator.HTTPoisonSSL
 
   @flag_name :tr_client
-  @person_search_api "api/v2/person/searchResults"
+  @person_search_api "api/v3/person/searchResults"
 
   defp http_client(), do: Application.get_env(:epi_locator, __MODULE__)[:http_client]
 
@@ -61,7 +61,7 @@ defmodule EpiLocator.TRClient do
   end
 
   @impl EpiLocator.TRClientBehaviour
-  def person_search_results(uri), do: search_results(uri, "{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
+  def person_search_results(uri), do: search_results(uri, "{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPageV3")
 
   defp search_results(uri, key) do
     uri

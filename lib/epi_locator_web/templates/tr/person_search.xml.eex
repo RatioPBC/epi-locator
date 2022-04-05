@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ps:PersonSearchRequest xmlns:ps="http://clear.thomsonreuters.com/api/search/2.0">
+<ps:PersonSearchRequestV3 xmlns:ps="http://clear.thomsonreuters.com/api/search/2.0">
     <PermissiblePurpose>
         <GLB>L</GLB>
         <DPPA>1</DPPA>
@@ -39,7 +39,7 @@
     </Criteria>
     <Datasources>
         <PublicRecordPeople>true</PublicRecordPeople>
-        <NPIRecord>true</NPIRecord>
-        <WorldCheckRiskIntelligence>true</WorldCheckRiskIntelligence>
+        <NPIRecord>false</NPIRecord>
+        <WorldCheckRiskIntelligence>false</WorldCheckRiskIntelligence>
     </Datasources>
-</ps:PersonSearchRequest>
+</ps:PersonSearchRequestV3>

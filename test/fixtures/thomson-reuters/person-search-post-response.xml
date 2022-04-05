@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:PersonResults xmlns:ns2="http://clear.thomsonreuters.com/api/search/2.0">
-    <Status>
-        <StatusCode>200</StatusCode>
-        <SubStatusCode>0</SubStatusCode>
-    </Status>
-    <Uri>https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5</Uri>
-    <GroupCount>1</GroupCount>
+  <Status>
+    <StatusCode>200</StatusCode>
+    <SubStatusCode>0</SubStatusCode>
+  </Status>
+  <Uri>https://s2s.beta.thomsonreuters.com/api/v3/person/searchResults/00000000733671e20173494ef23b34b5</Uri>
+  <GroupCount>1</GroupCount>
 </ns2:PersonResults>

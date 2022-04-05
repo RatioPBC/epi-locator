@@ -12,10 +12,10 @@ defmodule EpiLocator.TRClientTest do
   setup :tr_enabled
 
   @expected_headers ["content-type": "application/xml", Authorization: "Basic faked-base64-encoded-basic-auth"]
-  @expected_person_search_url "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults"
+  @expected_person_search_url "https://s2s.beta.thomsonreuters.com/api/v3/person/searchResults"
 
   # From the value inside of: test/fixtures/thomson-reuters/person-search-post-response.xml:
-  @expected_url_for_person_search_results "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5"
+  @expected_url_for_person_search_results "#{@expected_person_search_url}/00000000733671e20173494ef23b34b5"
 
   describe "person_search POST" do
     setup do
@@ -42,7 +42,7 @@ defmodule EpiLocator.TRClientTest do
           dob: nil
         )
 
-      assert results_uri == "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5"
+      assert results_uri == "#{@expected_person_search_url}/00000000733671e20173494ef23b34b5"
     end
   end
 
@@ -116,8 +116,10 @@ defmodule EpiLocator.TRClientTest do
     end
 
     test "returns some XML which has the results of the prior search" do
-      results_uri = "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733671e20173494ef23b34b5"
+      results_uri = "#{@expected_person_search_url}/00000000733671e20173494ef23b34b5"
+
       {:ok, results} = TRClient.person_search_results(results_uri)
+
       assert results["EndIndex"] == "0"
     end
   end
@@ -132,7 +134,7 @@ defmodule EpiLocator.TRClientTest do
     end
 
     test "returns an error message" do
-      results_uri = "https://s2s.beta.thomsonreuters.com/api/v2/person/searchResults/00000000733c12ed017358ac5ef44463"
+      results_uri = "#{@expected_person_search_url}/00000000733c12ed017358ac5ef44463"
 
       assert capture_log(fn ->
                response = TRClient.person_search_results(results_uri)
@@ -214,10 +216,4 @@ defmodule EpiLocator.TRClientTest do
 
     {:ok, context}
   end
-
-  # defp tr_disabled(context) do
-  # {:ok, false} = FunWithFlags.disable(TRClient.flag_name())
-
-  # {:ok, context}
-  # end
 end

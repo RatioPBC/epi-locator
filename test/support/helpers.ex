@@ -10,6 +10,6 @@ defmodule EpiLocator.Test.Helpers do
   def read_tr_xml_and_turn_into_map(filename) do
     filename
     |> read_xml_and_turn_into_map()
-    |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
+    |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPageV3")
   end
 end

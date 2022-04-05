@@ -31,7 +31,7 @@ defmodule EpiLocator.TrApiTest do
           "test/fixtures/thomson-reuters/person-search-get-response.xml"
           |> File.read!()
           |> XmlToMap.naive_map()
-          |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
+          |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPageV3")
 
         {:ok, results}
       end)
@@ -50,7 +50,7 @@ defmodule EpiLocator.TrApiTest do
           "test/fixtures/thomson-reuters/person-search-get-response.xml"
           |> File.read!()
           |> XmlToMap.naive_map()
-          |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPage")
+          |> Map.get("{http://clear.thomsonreuters.com/api/search/2.0}PersonResultsPageV3")
 
         {:ok, results}
       end)
