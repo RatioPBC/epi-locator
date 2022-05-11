@@ -48,7 +48,7 @@ defmodule EpiLocator.MixProject do
   defp deps do
     [
       {:cachex, "~> 3.3"},
-      {:commcare_api, "~> 0.2"},
+      {:commcare_api, "~> 0.3"},
       {:dart_sass, "~> 0.3", runtime: Mix.env() == :dev},
       {:ecto, "~> 3.4"},
       {:ecto_sql, "~> 3.4"},

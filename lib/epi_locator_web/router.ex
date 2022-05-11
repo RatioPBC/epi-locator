@@ -40,6 +40,7 @@ defmodule EpiLocatorWeb.Router do
     pipe_through(:browser)
 
     get("/healthcheck", HealthCheckController, :index)
+    get("/healthcheck/commcare", HealthCheckController, :commcare)
     get("/", PageController, :index)
   end
 
