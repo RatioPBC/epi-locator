@@ -38,7 +38,7 @@ config :wallaby,
 
 config :epi_locator, EpiLocatorWeb.Endpoint, server: true, port: 4001, url: [host: "example.com", port: 4001]
 config :epi_locator, EpiLocator, signer: EpiLocator.SignatureMock
-config :epi_locator, CommcareAPI.CommcareClient, http_client: EpiLocator.HTTPoisonMock
+config :epi_locator, :commcare_api_config, http_client: EpiLocator.HTTPoisonMock
 config :epi_locator, Oban, crontab: false, queues: false, plugins: false
 
 config :epi_locator,

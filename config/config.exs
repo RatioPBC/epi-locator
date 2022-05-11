@@ -59,7 +59,6 @@ config :dart_sass,
   ]
 
 config :epi_locator, EpiLocator, signer: EpiLocator.Signature, ttl: 10_000
-config :epi_locator, CommcareAPI.CommcareClient, http_client: HTTPoison
 
 config :epi_locator,
        EpiLocator.TRClient,

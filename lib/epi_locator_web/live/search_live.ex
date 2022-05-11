@@ -18,12 +18,7 @@ defmodule EpiLocatorWeb.SearchLive do
 
   defp commcare_api_config do
     config = Application.get_env(:epi_locator, :commcare_api_config)
-
-    %CommcareAPI.Config{
-      username: config[:username],
-      user_id: config[:user_id],
-      api_token: config[:api_token]
-    }
+    struct(CommcareAPI.Config, config)
   end
 
   defp system, do: Application.get_env(:epi_locator, :system)
